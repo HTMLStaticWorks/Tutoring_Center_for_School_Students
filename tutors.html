@@ -1,0 +1,390 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Tutors | BrightPath Learning Center</title>
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        .tutor-modal .modal-content {
+            border-radius: var(--bp-radius-lg);
+            border: none;
+            overflow: hidden;
+            background-color: var(--bp-card-bg);
+        }
+        .tutor-modal .modal-header {
+            border-bottom: 1px solid var(--bp-border);
+            padding: 1.5rem 2rem;
+        }
+        .tutor-modal .modal-body {
+            padding: 2rem;
+        }
+        .tutor-bio-img {
+            width: 100%;
+            border-radius: var(--bp-radius-md);
+            box-shadow: var(--bp-shadow-soft);
+            object-fit: cover;
+            aspect-ratio: 1/1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-xl navbar-premium fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i data-lucide="graduation-cap" class="text-accent"></i>
+                <span class="text-primary fw-bold">BrightPath</span>
+            </a>
+            
+            <div class="d-flex align-items-center order-xl-3 gap-3">
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+            
+            <div class="collapse navbar-collapse order-xl-2" id="navbarNav">
+                <ul class="navbar-nav mx-auto text-center">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle-custom" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Home <i data-lucide="chevron-down" class="dropdown-icon ms-1"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-custom">
+                            <li><a class="dropdown-item dropdown-item-custom" href="index.html">Home 1</a></li>
+                            <li><a class="dropdown-item dropdown-item-custom" href="home-2.html">Home 2</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="service.html">Service</a></li>
+                    <li class="nav-item"><a class="nav-link" href="subjects.html">Subjects</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="tutors.html">Tutors</a></li>
+                    <li class="nav-item"><a class="nav-link" href="batches.html">Batches</a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="section-padding bg-primary position-relative overflow-hidden pt-5" style="margin-top: 76px;">
+        <div class="container position-relative z-index-2 pt-5 pb-3">
+            <div class="row text-center justify-content-center">
+                <div class="col-lg-8" data-aos="fade-up">
+                    <div class="badge-premium bg-white text-primary border-0 mb-3">Our Faculty</div>
+                    <h1 class="display-4 fw-bold text-white mb-4">Meet Our Elite Mentors</h1>
+                    <p class="fs-5 text-white-50">Passionate educators with years of experience, dedicated to bringing out the best in every student.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Tutors Directory -->
+    <section class="section-padding pt-0">
+        <div class="container">
+            <div class="row g-4 justify-content-center">
+                
+                <!-- Tutor 1 -->
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="0">
+                    <div class="premium-card tutor-card h-100 text-center">
+                        <div class="mx-auto mb-4" style="width: 140px; height: 140px; border-radius: 50%; overflow: hidden;">
+                            <img src="assets/images/Dr. Sarah Jenkins2.png" alt="Dr. Sarah Jenkins" class="img-fluid w-100 h-100 object-fit-cover">
+                        </div>
+                        <h4 class="h5 fw-bold mb-1 text-dark">Dr. Sarah Jenkins</h4>
+                        <p class="text-primary fw-medium small mb-3">Mathematics</p>
+                        <p class="text-muted small mb-4">Grades 9-12 &bull; 12 Yrs Exp.</p>
+                        <button class="btn btn-sm btn-outline-custom rounded-pill w-100" data-bs-toggle="modal" data-bs-target="#tutorModal1">View Full Profile</button>
+                    </div>
+                </div>
+
+                <!-- Tutor 2 -->
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="premium-card tutor-card h-100 text-center">
+                        <div class="mx-auto mb-4" style="width: 140px; height: 140px; border-radius: 50%; overflow: hidden;">
+                            <img src="assets/images/Mark Thompson2.png" alt="Mark Thompson" class="img-fluid w-100 h-100 object-fit-cover">
+                        </div>
+                        <h4 class="h5 fw-bold mb-1 text-dark">Mark Thompson</h4>
+                        <p class="text-secondary fw-medium small mb-3">General Science</p>
+                        <p class="text-muted small mb-4">Grades 6-10 &bull; 8 Yrs Exp.</p>
+                        <button class="btn btn-sm btn-outline-custom rounded-pill w-100" data-bs-toggle="modal" data-bs-target="#tutorModal2">View Full Profile</button>
+                    </div>
+                </div>
+
+                <!-- Tutor 3 -->
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="premium-card tutor-card h-100 text-center">
+                        <div class="mx-auto mb-4" style="width: 140px; height: 140px; border-radius: 50%; overflow: hidden;">
+                            <img src="assets/images/Elena Rodriguez2.png" alt="Elena Rodriguez" class="img-fluid w-100 h-100 object-fit-cover">
+                        </div>
+                        <h4 class="h5 fw-bold mb-1 text-dark">Elena Rodriguez</h4>
+                        <p class="text-accent fw-medium small mb-3">English Literature</p>
+                        <p class="text-muted small mb-4">Grades 1-8 &bull; 5 Yrs Exp.</p>
+                        <button class="btn btn-sm btn-outline-custom rounded-pill w-100" data-bs-toggle="modal" data-bs-target="#tutorModal3">View Full Profile</button>
+                    </div>
+                </div>
+                
+                <!-- Tutor 4 -->
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="premium-card tutor-card h-100 text-center">
+                        <div class="mx-auto mb-4" style="width: 140px; height: 140px; border-radius: 50%; overflow: hidden;">
+                            <img src="assets/images/David Okafor.png" alt="David Okafor" class="img-fluid w-100 h-100 object-fit-cover">
+                        </div>
+                        <h4 class="h5 fw-bold mb-1 text-dark">David Okafor</h4>
+                        <p class="text-primary fw-medium small mb-3">Computer Science</p>
+                        <p class="text-muted small mb-4">Grades 9-12 &bull; 10 Yrs Exp.</p>
+                        <button class="btn btn-sm btn-outline-custom rounded-pill w-100" data-bs-toggle="modal" data-bs-target="#tutorModal4">View Full Profile</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Tutor Selection Process -->
+    <section class="section-padding bg-white border-top">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Our Rigorous Selection Process</h2>
+                <p class="text-muted">We accept only the top 5% of applicants to ensure the highest quality of education.</p>
+            </div>
+            <div class="row g-4 text-center">
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="0">
+                    <div class="bg-white rounded-4 shadow-sm h-100 border text-center transition-all overflow-hidden">
+                        <img src="assets/images/Application.png" alt="Application" class="img-fluid w-100" style="height: 160px; object-fit: cover;">
+                        <div class="p-4">
+                            <h5 class="fw-bold text-dark">1. Application</h5>
+                            <p class="text-muted small mb-0">Reviewing qualifications and past experience.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-white rounded-4 shadow-sm h-100 border text-center transition-all overflow-hidden">
+                        <img src="assets/images/Interview.png" alt="Interview" class="img-fluid w-100" style="height: 160px; object-fit: cover;">
+                        <div class="p-4">
+                            <h5 class="fw-bold text-dark">2. Interview</h5>
+                            <p class="text-muted small mb-0">Assessing subject knowledge and teaching philosophy.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-white rounded-4 shadow-sm h-100 border text-center transition-all overflow-hidden">
+                        <img src="assets/images/Demo Class.png" alt="Demo Class" class="img-fluid w-100" style="height: 160px; object-fit: cover;">
+                        <div class="p-4">
+                            <h5 class="fw-bold text-dark">3. Demo Class</h5>
+                            <p class="text-muted small mb-0">Evaluating live teaching skills with real students.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-white rounded-4 shadow-sm h-100 border text-center transition-all overflow-hidden">
+                        <img src="assets/images/Onboarding.png" alt="Onboarding" class="img-fluid w-100" style="height: 160px; object-fit: cover;">
+                        <div class="p-4">
+                            <h5 class="fw-bold text-dark">4. Onboarding</h5>
+                            <p class="text-muted small mb-0">Training in BrightPath's unique methodology.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Our Team CTA -->
+    <section class="section-padding bg-primary text-white position-relative overflow-hidden">
+        <div class="container position-relative z-index-1">
+            <div class="row justify-content-center align-items-center text-center">
+                <div class="col-lg-8" data-aos="zoom-in">
+                    <h2 class="fw-bold mb-3 text-white">Passionate About Teaching?</h2>
+                    <p class="fs-5 text-white-50 mb-5">We are always looking for dedicated educators to join our growing faculty. If you have what it takes to inspire the next generation, we want to hear from you.</p>
+                    <a href="contact.html" class="btn btn-light btn-lg rounded-pill px-5 fw-bold" style="color: var(--bp-primary) !important;">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals for Tutor Details -->
+    
+    <!-- Modal 1 -->
+    <div class="modal fade tutor-modal" id="tutorModal1" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold text-dark">Tutor Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-5">
+                        <div class="col-lg-4 text-center">
+                            <img src="assets/images/tutor-1.webp" alt="Dr. Sarah Jenkins" class="tutor-bio-img mb-4">
+                            <a href="batches.html?tutor=sarah" class="btn btn-primary-custom w-100 rounded-pill py-2">View Available Batches</a>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <h2 class="fw-bold mb-1">Dr. Sarah Jenkins</h2>
+                                    <h5 class="text-primary">Head of Mathematics</h5>
+                                </div>
+                                <div class="badge bg-light text-dark border p-2">Grades 9-12</div>
+                            </div>
+                            
+                            <hr class="my-4">
+                            
+                            <div class="row mb-4">
+                                <div class="col-sm-6 mb-3">
+                                    <h6 class="text-muted text-uppercase small tracking-wide fw-bold mb-2">Qualifications</h6>
+                                    <p class="mb-0 fw-medium">Ph.D. in Applied Mathematics<br><small class="text-muted">Stanford University</small></p>
+                                </div>
+                                <div class="col-sm-6 mb-3">
+                                    <h6 class="text-muted text-uppercase small tracking-wide fw-bold mb-2">Experience</h6>
+                                    <p class="mb-0 fw-medium">12 Years<br><small class="text-muted">Specializing in AP Calculus</small></p>
+                                </div>
+                            </div>
+                            
+                            <h6 class="text-muted text-uppercase small tracking-wide fw-bold mb-2">Teaching Philosophy</h6>
+                            <p class="text-muted">"Math is not about memorizing formulas; it's about learning a new language to describe the world. I strive to help students visualize problems, removing the fear of numbers and replacing it with genuine curiosity."</p>
+                            
+                            <div class="bg-light p-4 rounded-4 mt-4 border">
+                                <div class="d-flex gap-1 text-accent mb-2">
+                                    <i data-lucide="star" class="fill-accent" style="width: 16px;"></i><i data-lucide="star" class="fill-accent" style="width: 16px;"></i><i data-lucide="star" class="fill-accent" style="width: 16px;"></i><i data-lucide="star" class="fill-accent" style="width: 16px;"></i><i data-lucide="star" class="fill-accent" style="width: 16px;"></i>
+                                </div>
+                                <p class="small font-italic text-dark mb-2">"Dr. Jenkins completely changed my daughter's perspective on AP Calculus. She's patient, brilliant, and knows exactly how to break down complex concepts."</p>
+                                <small class="text-muted fw-bold">- Parent of 11th Grader</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div class="modal fade tutor-modal" id="tutorModal2" tabindex="-1" aria-hidden="true">
+        <!-- Exact same structure as Modal 1, adapted for Mark Thompson -->
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold text-dark">Tutor Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-5">
+                        <div class="col-lg-4 text-center">
+                            <img src="assets/images/tutor-2.webp" alt="Mark Thompson" class="tutor-bio-img mb-4">
+                            <a href="batches.html?tutor=mark" class="btn btn-primary-custom w-100 rounded-pill py-2">View Available Batches</a>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <h2 class="fw-bold mb-1">Mark Thompson</h2>
+                                    <h5 class="text-secondary">Senior Science Tutor</h5>
+                                </div>
+                                <div class="badge bg-light text-dark border p-2">Grades 6-10</div>
+                            </div>
+                            
+                            <hr class="my-4">
+                            
+                            <div class="row mb-4">
+                                <div class="col-sm-6 mb-3">
+                                    <h6 class="text-muted text-uppercase small tracking-wide fw-bold mb-2">Qualifications</h6>
+                                    <p class="mb-0 fw-medium">M.S. in Education<br><small class="text-muted">Boston College</small></p>
+                                </div>
+                                <div class="col-sm-6 mb-3">
+                                    <h6 class="text-muted text-uppercase small tracking-wide fw-bold mb-2">Experience</h6>
+                                    <p class="mb-0 fw-medium">8 Years<br><small class="text-muted">Physics & Chemistry</small></p>
+                                </div>
+                            </div>
+                            
+                            <h6 class="text-muted text-uppercase small tracking-wide fw-bold mb-2">Teaching Philosophy</h6>
+                            <p class="text-muted">"Science is best learned through inquiry. I encourage my students to ask 'why' and guide them through experiments and logical reasoning to find the answers themselves."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modals 3 and 4 follow the same pattern... -->
+    <!-- Footer -->
+    <footer class="footer mt-5">
+        <div class="container">
+            <div class="row g-5 mb-5">
+                <div class="col-lg-4">
+                    <a class="navbar-brand mb-4" href="index.html" style="color: var(--bp-primary) !important;">
+                        <i data-lucide="graduation-cap" class="text-accent"></i>
+                        BrightPath
+                    </a>
+                    <p class="mb-4">Empowering students to achieve academic excellence through personalized tutoring and innovative learning methods.</p>
+                                        <div class="d-flex gap-3">
+                        <a href="#" class="btn btn-outline-custom rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                        </a>
+                        <a href="#" class="btn btn-outline-custom rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                        <a href="#" class="btn btn-outline-custom rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="footer-title">Quick Links</h5>
+                    <a href="about.html" class="footer-link">About Us</a>
+                    <a href="tutors.html" class="footer-link">Our Tutors</a>
+                    <a href="batches.html" class="footer-link">Batch Timings</a>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="footer-title">Programs</h5>
+                    <a href="subjects.html#primary" class="footer-link">Primary School</a>
+                    <a href="subjects.html#middle" class="footer-link">Middle School</a>
+                    <a href="subjects.html#high" class="footer-link">High School</a>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h5 class="footer-title">Contact Us</h5>
+                    <div class="d-flex mb-3 text-muted">
+                        <i data-lucide="map-pin" class="me-3 text-accent" style="flex-shrink: 0;"></i>
+                        <span>123 Education Boulevard,<br>Learning District, NY 10001</span>
+                    </div>
+                    <div class="d-flex mb-3 text-muted">
+                        <i data-lucide="phone" class="me-3 text-accent" style="flex-shrink: 0;"></i>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="d-flex text-muted">
+                        <i data-lucide="mail" class="me-3 text-accent" style="flex-shrink: 0;"></i>
+                        <span>hello@brightpath.edu</span>
+                    </div>
+                </div>
+            </div>
+            <div class="border-top pt-4 mt-4 text-center" style="border-color: var(--bp-border) !important;">
+                <p class="mb-0 text-muted">&copy; 2026 BrightPath Learning Center. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/main.js"></script>
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
+        <i data-lucide="arrow-up"></i>
+    </button>
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,344 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admissions | BrightPath Learning Center</title>
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-xl navbar-premium fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i data-lucide="graduation-cap" class="text-accent"></i>
+                <span class="text-primary fw-bold">BrightPath</span>
+            </a>
+            
+            <div class="d-flex align-items-center order-xl-3 gap-3">
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+            
+            <div class="collapse navbar-collapse order-xl-2" id="navbarNav">
+                <ul class="navbar-nav mx-auto text-center">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle-custom" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Home <i data-lucide="chevron-down" class="dropdown-icon ms-1"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-custom">
+                            <li><a class="dropdown-item dropdown-item-custom" href="index.html">Home 1</a></li>
+                            <li><a class="dropdown-item dropdown-item-custom" href="home-2.html">Home 2</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="service.html">Service</a></li>
+                    <li class="nav-item"><a class="nav-link" href="subjects.html">Subjects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tutors.html">Tutors</a></li>
+                    <li class="nav-item"><a class="nav-link" href="batches.html">Batches</a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="section-padding bg-primary position-relative overflow-hidden pt-5" style="margin-top: 76px;">
+        <div class="container position-relative z-index-2 pt-5 pb-3">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8" data-aos="fade-up">
+                    <div class="badge-premium bg-white text-primary border-0 mb-3">Join Us</div>
+                    <h1 class="display-4 fw-bold text-white mb-4">Start Your BrightPath Journey</h1>
+                    <p class="fs-5 text-white-50 mb-4">Enrollment begins with understanding your child's unique needs. Book a free assessment today to discover the best learning path.</p>
+                    <ul class="list-unstyled mb-0 d-flex flex-wrap justify-content-center gap-4 mt-4">
+                        <li class="d-flex align-items-center gap-2">
+                            <i data-lucide="check-circle" class="text-white"></i> <span class="fw-medium text-white">No commitment required</span>
+                        </li>
+                        <li class="d-flex align-items-center gap-2">
+                            <i data-lucide="check-circle" class="text-white"></i> <span class="fw-medium text-white">Comprehensive gap analysis</span>
+                        </li>
+                        <li class="d-flex align-items-center gap-2">
+                            <i data-lucide="check-circle" class="text-white"></i> <span class="fw-medium text-white">Personalized curriculum matching</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admission Form Section -->
+    <section class="section-padding bg-background">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="premium-card p-4 p-md-5 shadow-lg bg-white border-0" style="border-radius: var(--bp-radius-lg);">
+                        <h4 class="fw-bold mb-4 text-center text-dark">Book Free Assessment</h4>
+                        <form id="admissionForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label text-muted small fw-bold">Parent Name</label>
+                                    <input type="text" class="form-control-premium w-100" placeholder="John Doe" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-muted small fw-bold">Student Name</label>
+                                    <input type="text" class="form-control-premium w-100" placeholder="Jane Doe" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-muted small fw-bold">Email Address</label>
+                                    <input type="email" class="form-control-premium w-100" placeholder="john@example.com" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-muted small fw-bold">Phone Number</label>
+                                    <input type="tel" class="form-control-premium w-100" placeholder="(555) 000-0000" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-muted small fw-bold">Grade Level</label>
+                                    <select class="form-control-premium w-100" required>
+                                        <option value="" disabled selected>Select Grade</option>
+                                        <option value="primary">Primary (1-5)</option>
+                                        <option value="middle">Middle School (6-8)</option>
+                                        <option value="high">High School (9-12)</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-muted small fw-bold">Subject of Interest</label>
+                                    <select class="form-control-premium w-100" required>
+                                        <option value="" disabled selected>Select Subject</option>
+                                        <option value="math">Mathematics</option>
+                                        <option value="science">Science / Physics</option>
+                                        <option value="english">English Language</option>
+                                        <option value="cs">Computer Science</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label text-muted small fw-bold">Preferred Timing</label>
+                                    <select class="form-control-premium w-100" required>
+                                        <option value="" disabled selected>Select Time</option>
+                                        <option value="morning">Morning (8 AM - 12 PM)</option>
+                                        <option value="evening">Evening (4 PM - 8 PM)</option>
+                                        <option value="weekend">Weekends Only</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label text-muted small fw-bold">Additional Message (Optional)</label>
+                                    <textarea class="form-control-premium w-100" rows="3" placeholder="Tell us about any specific goals or struggles..."></textarea>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="btn btn-primary-custom btn-premium w-100">Submit Application</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admission Process -->
+    <style>
+        .process-card {
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border: 1px solid var(--bp-border);
+            background: var(--bp-card-bg);
+            border-radius: var(--bp-radius-lg);
+            z-index: 1;
+        }
+        .process-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--bp-shadow-lg);
+        }
+        .process-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--bp-border);
+        }
+    </style>
+    
+    <section class="section-padding" style="background-color: var(--bp-background);">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill mb-2 fw-bold" style="letter-spacing: 1px;">HOW IT WORKS</span>
+                <h2 class="section-title mt-2 display-6 fw-bold">The Admission Process</h2>
+                <p class="section-subtitle text-muted fs-5 mx-auto" style="max-width: 600px;">A seamless 6-step journey from initial inquiry to academic excellence.</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Step 1 -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
+                    <div class="process-card h-100 position-relative overflow-hidden p-0">
+                        <img src="assets/images/Free Assessment.png" alt="Free Assessment" class="w-100 d-block">
+                        <div class="p-4 p-xl-5">
+                            <h4 class="fw-bold mb-3 text-center">Free Assessment</h4>
+                            <p class="text-muted mb-0">We begin with a comprehensive skill gap analysis to understand the student's current academic standing and specific areas for improvement.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="process-card h-100 position-relative overflow-hidden p-0">
+                        <img src="assets/images/Evaluation.png" alt="Evaluation" class="w-100 d-block">
+                        <div class="p-4 p-xl-5">
+                            <h4 class="fw-bold mb-3 text-center">Evaluation</h4>
+                            <p class="text-muted mb-0">Our academic experts meticulously review the assessment results to identify strengths, weaknesses, and the student's unique learning styles.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="process-card h-100 position-relative overflow-hidden p-0">
+                        <img src="assets/images/Recommendation.png" alt="Recommendation" class="w-100 d-block">
+                        <div class="p-4 p-xl-5">
+                            <h4 class="fw-bold mb-3 text-center">Recommendation</h4>
+                            <p class="text-muted mb-0">Based on the evaluation, we design a customized curriculum path tailored specifically to the student's personal academic goals.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="process-card h-100 position-relative overflow-hidden p-0">
+                        <img src="assets/images/Tutor Match.png" alt="Tutor Match" class="w-100 d-block">
+                        <div class="p-4 p-xl-5">
+                            <h4 class="fw-bold mb-3 text-center">Tutor Match</h4>
+                            <p class="text-muted mb-0">We carefully pair the student with an ideal mentor whose teaching style perfectly aligns with the student's learning profile.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="process-card h-100 position-relative overflow-hidden p-0">
+                        <img src="assets/images/Batch Selection.png" alt="Batch Selection" class="w-100 d-block">
+                        <div class="p-4 p-xl-5">
+                            <h4 class="fw-bold mb-3 text-center">Batch Selection</h4>
+                            <p class="text-muted mb-0">Families can choose from a variety of flexible timings and batch sizes (1-on-1 or small group) to fit their busy schedules.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="process-card h-100 position-relative overflow-hidden p-0">
+                        <img src="assets/images/Enrollment.png" alt="Enrollment" class="w-100 d-block">
+                        <div class="p-4 p-xl-5">
+                            <h4 class="fw-bold mb-3 text-center">Enrollment</h4>
+                            <p class="text-muted mb-0">Welcome to BrightPath! The student is now officially enrolled and ready to embark on their journey to academic excellence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer mt-5">
+        <div class="container">
+            <div class="row g-5 mb-5">
+                <div class="col-lg-4">
+                    <a class="navbar-brand mb-4" href="index.html" style="color: var(--bp-primary) !important;">
+                        <i data-lucide="graduation-cap" class="text-accent"></i>
+                        BrightPath
+                    </a>
+                    <p class="mb-4">Empowering students to achieve academic excellence through personalized tutoring and innovative learning methods.</p>
+                                        <div class="d-flex gap-3">
+                        <a href="#" class="btn btn-outline-custom rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                        </a>
+                        <a href="#" class="btn btn-outline-custom rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                        <a href="#" class="btn btn-outline-custom rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="footer-title">Quick Links</h5>
+                    <a href="about.html" class="footer-link">About Us</a>
+                    <a href="tutors.html" class="footer-link">Our Tutors</a>
+                    <a href="batches.html" class="footer-link">Batch Timings</a>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="footer-title">Programs</h5>
+                    <a href="subjects.html#primary" class="footer-link">Primary School</a>
+                    <a href="subjects.html#middle" class="footer-link">Middle School</a>
+                    <a href="subjects.html#high" class="footer-link">High School</a>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h5 class="footer-title">Contact Us</h5>
+                    <div class="d-flex mb-3 text-muted">
+                        <i data-lucide="map-pin" class="me-3 text-accent" style="flex-shrink: 0;"></i>
+                        <span>123 Education Boulevard,<br>Learning District, NY 10001</span>
+                    </div>
+                    <div class="d-flex mb-3 text-muted">
+                        <i data-lucide="phone" class="me-3 text-accent" style="flex-shrink: 0;"></i>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="d-flex text-muted">
+                        <i data-lucide="mail" class="me-3 text-accent" style="flex-shrink: 0;"></i>
+                        <span>hello@brightpath.edu</span>
+                    </div>
+                </div>
+            </div>
+            <div class="border-top pt-4 mt-4 text-center" style="border-color: var(--bp-border) !important;">
+                <p class="mb-0 text-muted">&copy; 2026 BrightPath Learning Center. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.getElementById('admissionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="spinner-border spinner-border-sm me-2"></i> Submitting...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i data-lucide="check" class="me-2"></i> Application Sent!';
+                btn.classList.remove('btn-primary-custom');
+                btn.classList.add('bg-success', 'text-white');
+                lucide.createIcons();
+                this.reset();
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.add('btn-primary-custom');
+                    btn.classList.remove('bg-success', 'text-white');
+                    btn.disabled = false;
+                }, 3000);
+            }, 1500);
+        });
+    </script>
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
+        <i data-lucide="arrow-up"></i>
+    </button>
+</body>
+</html>
+
+
+
+
+
+

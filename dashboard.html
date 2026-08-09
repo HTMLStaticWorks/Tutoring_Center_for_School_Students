@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard | BrightPath</title>
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        body {
+            background-color: var(--bp-background);
+        }
+        
+        .dashboard-wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            background: var(--bp-card-bg);
+            border-inline-end: 1px solid var(--bp-border);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1040;
+            transition: var(--bp-transition);
+        }
+        
+        .main-content {
+            flex-grow: 1;
+            min-width: 0; /* Prevent flex child from overflowing */
+            margin-inline-start: 280px;
+            padding: 2rem;
+            transition: var(--bp-transition);
+        }
+        
+        @media (max-width: 991.98px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            [dir="rtl"] .sidebar {
+                transform: translateX(100%);
+            }
+            .sidebar.show {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-inline-start: 0;
+                padding: 1rem;
+            }
+        }
+        
+        .dashboard-card {
+            background: var(--bp-card-bg);
+            border-radius: var(--bp-radius-lg);
+            border: 1px solid var(--bp-border);
+            padding: 1.5rem;
+        }
+
+        .dashboard-section > .row:first-child > [class*="col-"] > .dashboard-card {
+            height: 100%;
+        }
+        
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-inline-start: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            inset-inline-start: 0;
+            top: 0;
+            bottom: -1.5rem;
+            width: 2px;
+            background: var(--bp-border);
+        }
+        
+        .timeline-item:last-child::before {
+            bottom: 0;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            inset-inline-start: -4px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--bp-primary);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <div class="dashboard-wrapper">
+        
+        <!-- Sidebar -->
+        <aside class="sidebar d-flex flex-column" id="sidebar">
+            <div class="p-4 border-bottom border-secondary border-opacity-10 d-flex justify-content-between align-items-center">
+                <a class="navbar-brand text-dark d-flex align-items-center gap-2" href="index.html">
+                    <i data-lucide="graduation-cap" class="text-accent"></i>
+                    <span class="fw-bold fs-4 text-primary">BrightPath</span>
+                </a>
+                <button class="btn btn-sm d-lg-none" id="closeSidebar"><i data-lucide="x"></i></button>
+            </div>
+            
+            <div class="p-3 flex-grow-1">
+                <small class="text-muted fw-bold text-uppercase tracking-wide px-3 mb-2 d-block">Main Menu</small>
+                <a href="#" class="sidebar-link active" data-section="overview"><i data-lucide="layout-dashboard"></i> Overview</a>
+                <a href="#" class="sidebar-link" data-section="schedule"><i data-lucide="calendar"></i> Schedule</a>
+                <a href="#" class="sidebar-link" data-section="attendance"><i data-lucide="check-square"></i> Attendance</a>
+                <a href="#" class="sidebar-link" data-section="materials"><i data-lucide="book-open"></i> Study Materials</a>
+                
+                <small class="text-muted fw-bold text-uppercase tracking-wide px-3 mt-4 mb-2 d-block">Academics</small>
+                <a href="#" class="sidebar-link" data-section="tests"><i data-lucide="file-text"></i> Tests & Exams</a>
+                <a href="#" class="sidebar-link" data-section="assignments"><i data-lucide="pen-tool"></i> Assignments</a>
+                <a href="#" class="sidebar-link" data-section="progress"><i data-lucide="bar-chart-2"></i> Progress</a>
+                
+                <small class="text-muted fw-bold text-uppercase tracking-wide px-3 mt-4 mb-2 d-block">Updates</small>
+                <a href="#" class="sidebar-link justify-content-between" data-section="announcements">
+                    <span class="d-flex align-items-center" style="gap: 1rem;">
+                        <i data-lucide="bell" class="flex-shrink-0"></i>
+                        <span>Announcements</span>
+                    </span>
+                    <span class="badge bg-primary rounded-pill flex-shrink-0">3</span>
+                </a>
+            </div>
+            
+            <div class="p-3 border-top border-secondary border-opacity-10">
+                <a href="#" class="sidebar-link" data-section="profile"><i data-lucide="settings"></i> Profile</a>
+                <div class="d-flex gap-3 mb-3 px-3 mt-2">
+                    <button class="theme-toggle rtl-toggle" aria-label="Toggle RTL">
+                        <i data-lucide="arrow-right-left"></i>
+                    </button>
+                    <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                        <i data-lucide="moon"></i>
+                    </button>
+                </div>
+                <a href="index.html" class="sidebar-link text-danger"><i data-lucide="log-out"></i> Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom border-secondary border-opacity-10">
+                <div class="d-flex align-items-center gap-3">
+                    <button class="btn btn-light d-lg-none" id="openSidebar"><i data-lucide="menu"></i></button>
+                    <div>
+                        <h3 class="fw-bold mb-0">Good morning, Alex! <span class="d-none d-md-inline">👋</span></h3>
+                        <p class="text-muted mb-0 small">Grade 10 • Science Stream</p>
+                    </div>
+                </div>
+                
+                <div class="d-flex align-items-center gap-3">
+                    <div class="dropdown">
+                        <a href="#" class="d-flex align-items-center gap-2 text-decoration-none dropdown-toggle-custom" data-bs-toggle="dropdown">
+                            <div class="rounded-circle border d-flex align-items-center justify-content-center bg-primary text-white fw-bold shadow-sm" style="width: 40px; height: 40px; font-size: 1.2rem;">
+                                A
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-custom border-0 shadow">
+                            <li><a class="dropdown-item-custom" href="#"><i data-lucide="user" style="width: 16px;"></i> My Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item-custom text-danger" href="index.html"><i data-lucide="log-out" style="width: 16px;"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sections Container -->
+            <div id="sections-container" class="container-fluid">
+                <!-- Overview Section -->
+                <div id="section-overview" class="dashboard-section">
+                    <!-- Stats Row -->
+            <div class="row g-4 mb-4">
+                <div class="col-lg-3 col-12">
+                    <div class="dashboard-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <p class="text-muted small fw-bold mb-1">Attendance</p>
+                                <h3 class="fw-bold mb-0">92%</h3>
+                            </div>
+                            <div class="stat-icon bg-success bg-opacity-10 text-success"><i data-lucide="check-circle"></i></div>
+                        </div>
+                        <div class="progress-premium success" style="height: 6px;">
+                            <div class="progress-bar" style="width: 92%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-12">
+                    <div class="dashboard-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <p class="text-muted small fw-bold mb-1">Avg. Score</p>
+                                <h3 class="fw-bold mb-0">A-</h3>
+                            </div>
+                            <div class="stat-icon bg-primary bg-opacity-10 text-primary"><i data-lucide="award"></i></div>
+                        </div>
+                        <div class="d-flex align-items-center gap-1 text-success small fw-medium">
+                            <i data-lucide="trending-up" style="width: 14px;"></i> +2% from last month
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-12">
+                    <div class="dashboard-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <p class="text-muted small fw-bold mb-1">Assignments</p>
+                                <h3 class="fw-bold mb-0">4 Due</h3>
+                            </div>
+                            <div class="stat-icon bg-accent bg-opacity-10 text-accent"><i data-lucide="pen-tool"></i></div>
+                        </div>
+                        <a href="#" class="text-accent text-decoration-none small fw-medium">View all pending <i data-lucide="arrow-right" style="width: 14px;"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-12">
+                    <div class="dashboard-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <p class="text-muted small fw-bold mb-1">Classes Today</p>
+                                <h3 class="fw-bold mb-0">2</h3>
+                            </div>
+                            <div class="stat-icon bg-secondary bg-opacity-10 text-secondary"><i data-lucide="video"></i></div>
+                        </div>
+                        <p class="text-muted small mb-0">Next: Physics at 4:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Dashboard Area -->
+            <div class="row g-4">
+                
+                <!-- Left Column: Chart & Schedule -->
+                <div class="col-lg-8">
+                    <!-- Progress Chart -->
+                    <div class="dashboard-card mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="fw-bold mb-0">Academic Progress</h5>
+                            <select class="form-select form-select-sm w-auto">
+                                <option>Last 6 Months</option>
+                                <option>This Year</option>
+                            </select>
+                        </div>
+                        <div style="height: 300px;">
+                            <canvas id="progressChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- Today's Schedule -->
+                    <div class="dashboard-card">
+                        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-3 mb-4">
+                            <h5 class="fw-bold mb-0">Today's Classes</h5>
+                            <button class="btn btn-sm btn-outline-custom w-100 w-sm-auto">View Full Calendar</button>
+                        </div>
+                        
+                        <div class="d-flex flex-column gap-3">
+                            <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-3 p-3 border rounded-3 border-secondary border-opacity-10">
+                                <div class="d-flex align-items-center gap-3 flex-grow-1 w-100">
+                                    <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-3 text-center flex-shrink-0" style="width: 80px;">
+                                        <h5 class="fw-bold mb-0">4:00</h5>
+                                        <small>PM</small>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="fw-bold mb-1">AP Physics - Kinetics</h6>
+                                        <p class="text-muted small mb-0"><i data-lucide="user" style="width:14px"></i> Dr. Chen â€¢ <i data-lucide="video" style="width:14px"></i> Room 104 (Hybrid)</p>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary-custom btn-sm rounded-pill px-3 w-100 w-sm-auto flex-shrink-0">Join Link</button>
+                            </div>
+                            
+                            <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-3 p-3 border rounded-3 border-secondary border-opacity-10">
+                                <div class="d-flex align-items-center gap-3 flex-grow-1 w-100">
+                                    <div class="bg-light text-muted p-3 rounded-3 text-center flex-shrink-0" style="width: 80px;">
+                                        <h5 class="fw-bold mb-0">6:30</h5>
+                                        <small>PM</small>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="fw-bold mb-1">Advanced Mathematics - Calculus</h6>
+                                        <p class="text-muted small mb-0"><i data-lucide="user" style="width:14px"></i> Sarah Jenkins â€¢ <i data-lucide="map-pin" style="width:14px"></i> Main Campus</p>
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline-custom btn-sm rounded-pill px-3 w-100 w-sm-auto flex-shrink-0" disabled>Upcoming</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column: Materials, Tests, Timeline -->
+                <div class="col-lg-4">
+                    
+                    <!-- Study Materials -->
+                    <div class="dashboard-card mb-4">
+                        <h5 class="fw-bold mb-4">Recent Materials</h5>
+                        <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
+                            <li class="d-flex align-items-center gap-3">
+                                <div class="bg-danger bg-opacity-10 text-danger p-2 rounded"><i data-lucide="file-text"></i></div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-0 fw-medium fs-6">Kinetics Formula Sheet.pdf</h6>
+                                    <small class="text-muted">Physics â€¢ 2.4 MB</small>
+                                </div>
+                                <a href="#" class="text-primary"><i data-lucide="download" style="width: 18px;"></i></a>
+                            </li>
+                            <li class="d-flex align-items-center gap-3">
+                                <div class="bg-primary bg-opacity-10 text-primary p-2 rounded"><i data-lucide="book"></i></div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-0 fw-medium fs-6">Calculus Ch. 4 Notes.docx</h6>
+                                    <small class="text-muted">Math â€¢ 1.1 MB</small>
+                                </div>
+                                <a href="#" class="text-primary"><i data-lucide="download" style="width: 18px;"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Announcements Timeline -->
+                    <div class="dashboard-card">
+                        <h5 class="fw-bold mb-4">Announcements</h5>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-dot bg-accent"></div>
+                                <h6 class="fw-bold fs-6 mb-1">Mock Exam Schedule Released</h6>
+                                <p class="text-muted small mb-0">Check the portal for next week's mock exam timings.</p>
+                                <small class="text-muted opacity-75">2 hours ago</small>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot bg-primary"></div>
+                                <h6 class="fw-bold fs-6 mb-1">New Assignment: Physics</h6>
+                                <p class="text-muted small mb-0">Thermodynamics worksheet uploaded.</p>
+                                <small class="text-muted opacity-75">Yesterday</small>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot bg-success"></div>
+                                <h6 class="fw-bold fs-6 mb-1">Test Graded</h6>
+                                <p class="text-muted small mb-0">Your Math Mid-term has been graded (A-).</p>
+                                <small class="text-muted opacity-75">2 days ago</small>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <!-- Schedule Section -->
+            <div id="section-schedule" class="dashboard-section d-none">
+                <!-- Stats Row -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Next Class</p>
+                                    <h3 class="fw-bold mb-0">Math</h3>
+                                </div>
+                                <div class="stat-icon bg-primary bg-opacity-10 text-primary"><i data-lucide="clock"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">Starts in 2 hours</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Classes Today</p>
+                                    <h3 class="fw-bold mb-0">4</h3>
+                                </div>
+                                <div class="stat-icon bg-success bg-opacity-10 text-success"><i data-lucide="calendar-check"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">2 completed</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Total Hours</p>
+                                    <h3 class="fw-bold mb-0">12</h3>
+                                </div>
+                                <div class="stat-icon bg-accent bg-opacity-10 text-accent"><i data-lucide="activity"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">This Week</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Upcoming Tests</p>
+                                    <h3 class="fw-bold mb-0">2</h3>
+                                </div>
+                                <div class="stat-icon bg-secondary bg-opacity-10 text-secondary"><i data-lucide="file-text"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">In next 7 days</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Area -->
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="dashboard-card mb-4">
+                            <h5 class="fw-bold mb-4">Weekly Schedule</h5>
+                            <div class="d-flex flex-column gap-3">
+                                <div class="d-flex align-items-center gap-3 p-3 border rounded-3 border-secondary border-opacity-10">
+                                    <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-3 text-center" style="min-width: 80px;">
+                                        <h5 class="fw-bold mb-0">Mon</h5>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="fw-bold mb-1">10:00 AM - AP Calculus</h6>
+                                        <h6 class="fw-bold mb-1">2:00 PM - General Science</h6>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center gap-3 p-3 border rounded-3 border-secondary border-opacity-10">
+                                    <div class="bg-success bg-opacity-10 text-success p-3 rounded-3 text-center" style="min-width: 80px;">
+                                        <h5 class="fw-bold mb-0">Tue</h5>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="fw-bold mb-1">9:00 AM - World History</h6>
+                                        <h6 class="fw-bold mb-1">1:00 PM - Literature</h6>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center gap-3 p-3 border rounded-3 border-secondary border-opacity-10">
+                                    <div class="bg-accent bg-opacity-10 text-accent p-3 rounded-3 text-center" style="min-width: 80px;">
+                                        <h5 class="fw-bold mb-0">Wed</h5>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="fw-bold mb-1">11:00 AM - Computer Science</h6>
+                                        <h6 class="fw-bold mb-1">3:30 PM - Physics Lab</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="dashboard-card">
+                            <h5 class="fw-bold mb-4">Upcoming Events</h5>
+                            <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
+                                <li class="d-flex align-items-start gap-3">
+                                    <div class="bg-danger bg-opacity-10 text-danger p-2 rounded mt-1"><i data-lucide="alert-circle" style="width: 18px;"></i></div>
+                                    <div>
+                                        <h6 class="mb-1 fw-bold">Math Mid-term</h6>
+                                        <p class="text-muted small mb-0">Oct 15, 9:00 AM</p>
+                                    </div>
+                                </li>
+                                <li class="d-flex align-items-start gap-3">
+                                    <div class="bg-primary bg-opacity-10 text-primary p-2 rounded mt-1"><i data-lucide="users" style="width: 18px;"></i></div>
+                                    <div>
+                                        <h6 class="mb-1 fw-bold">Study Group</h6>
+                                        <p class="text-muted small mb-0">Oct 16, 4:00 PM</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attendance Section -->
+            <div id="section-attendance" class="dashboard-section d-none">
+                <!-- Stats Row -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Overall Rate</p>
+                                    <h3 class="fw-bold mb-0">92%</h3>
+                                </div>
+                                <div class="stat-icon bg-success bg-opacity-10 text-success"><i data-lucide="percent"></i></div>
+                            </div>
+                            <div class="progress-premium success" style="height: 6px;">
+                                <div class="progress-bar" style="width: 92%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Present</p>
+                                    <h3 class="fw-bold mb-0">145</h3>
+                                </div>
+                                <div class="stat-icon bg-primary bg-opacity-10 text-primary"><i data-lucide="check-circle"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">Total Classes Attended</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Absent</p>
+                                    <h3 class="fw-bold mb-0">12</h3>
+                                </div>
+                                <div class="stat-icon bg-danger bg-opacity-10 text-danger"><i data-lucide="x-circle"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">Total Classes Missed</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Late Arrivals</p>
+                                    <h3 class="fw-bold mb-0">3</h3>
+                                </div>
+                                <div class="stat-icon bg-accent bg-opacity-10 text-accent"><i data-lucide="clock"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">Total Late Marks</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Area -->
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="dashboard-card mb-4">
+                            <h5 class="fw-bold mb-4">Recent Attendance Records</h5>
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle">
+                                    <thead>
+                                        <tr class="text-muted small text-uppercase">
+                                            <th>Date</th>
+                                            <th>Subject</th>
+                                            <th>Status</th>
+                                            <th>Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Oct 12, 2026</td>
+                                            <td class="fw-medium">AP Calculus</td>
+                                            <td><span class="badge bg-success bg-opacity-10 text-success px-2 py-1">Present</span></td>
+                                            <td class="text-muted">10:00 AM</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Oct 11, 2026</td>
+                                            <td class="fw-medium">Physics Lab</td>
+                                            <td><span class="badge bg-success bg-opacity-10 text-success px-2 py-1">Present</span></td>
+                                            <td class="text-muted">3:30 PM</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Oct 10, 2026</td>
+                                            <td class="fw-medium">World History</td>
+                                            <td><span class="badge bg-danger bg-opacity-10 text-danger px-2 py-1">Absent</span></td>
+                                            <td class="text-muted">9:00 AM</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Oct 09, 2026</td>
+                                            <td class="fw-medium">Computer Science</td>
+                                            <td><span class="badge bg-accent bg-opacity-10 text-accent px-2 py-1">Late</span></td>
+                                            <td class="text-muted">11:15 AM</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="dashboard-card">
+                            <h5 class="fw-bold mb-4">Subject Breakdown</h5>
+                            <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
+                                <li>
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span class="fw-medium">AP Calculus</span>
+                                        <span class="text-success fw-bold">98%</span>
+                                    </div>
+                                    <div class="progress-premium" style="height: 6px;">
+                                        <div class="progress-bar bg-success" style="width: 98%"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span class="fw-medium">Physics Lab</span>
+                                        <span class="text-primary fw-bold">92%</span>
+                                    </div>
+                                    <div class="progress-premium" style="height: 6px;">
+                                        <div class="progress-bar bg-primary" style="width: 92%"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span class="fw-medium">World History</span>
+                                        <span class="text-accent fw-bold">85%</span>
+                                    </div>
+                                    <div class="progress-premium" style="height: 6px;">
+                                        <div class="progress-bar bg-accent" style="width: 85%"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Materials Section -->
+            <div id="section-materials" class="dashboard-section d-none">
+                <!-- Stats Row -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Total Files</p>
+                                    <h3 class="fw-bold mb-0">45</h3>
+                                </div>
+                                <div class="stat-icon bg-primary bg-opacity-10 text-primary"><i data-lucide="file-text"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">Across 6 subjects</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Recent Uploads</p>
+                                    <h3 class="fw-bold mb-0">3</h3>
+                                </div>
+                                <div class="stat-icon bg-success bg-opacity-10 text-success"><i data-lucide="upload-cloud"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">Added this week</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Storage Used</p>
+                                    <h3 class="fw-bold mb-0">120MB</h3>
+                                </div>
+                                <div class="stat-icon bg-accent bg-opacity-10 text-accent"><i data-lucide="hard-drive"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">Out of 1GB limit</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Favorites</p>
+                                    <h3 class="fw-bold mb-0">12</h3>
+                                </div>
+                                <div class="stat-icon bg-danger bg-opacity-10 text-danger"><i data-lucide="heart"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">Quick access items</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Area -->
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="dashboard-card mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="fw-bold mb-0">Recent Documents</h5>
+                                <div class="input-group" style="max-width: 250px;">
+                                    <span class="input-group-text bg-light border-end-0"><i data-lucide="search" style="width: 16px;"></i></span>
+                                    <input type="text" class="form-control bg-light border-start-0" placeholder="Search files...">
+                                </div>
+                            </div>
+                            
+                            <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
+                                <li class="d-flex align-items-center gap-3 p-3 border rounded-3 border-secondary border-opacity-10">
+                                    <div class="bg-danger bg-opacity-10 text-danger p-3 rounded"><i data-lucide="file-text"></i></div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0 fw-bold">Kinetics Formula Sheet.pdf</h6>
+                                        <small class="text-muted">Physics â€¢ 2.4 MB â€¢ Uploaded Yesterday</small>
+                                    </div>
+                                    <button class="btn btn-light btn-sm"><i data-lucide="download" style="width: 18px;"></i></button>
+                                </li>
+                                <li class="d-flex align-items-center gap-3 p-3 border rounded-3 border-secondary border-opacity-10">
+                                    <div class="bg-primary bg-opacity-10 text-primary p-3 rounded"><i data-lucide="book"></i></div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0 fw-bold">Calculus Ch. 4 Notes.docx</h6>
+                                        <small class="text-muted">Math â€¢ 1.1 MB â€¢ Uploaded Oct 10</small>
+                                    </div>
+                                    <button class="btn btn-light btn-sm"><i data-lucide="download" style="width: 18px;"></i></button>
+                                </li>
+                                <li class="d-flex align-items-center gap-3 p-3 border rounded-3 border-secondary border-opacity-10">
+                                    <div class="bg-success bg-opacity-10 text-success p-3 rounded"><i data-lucide="image"></i></div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0 fw-bold">Plant Cell Diagram.png</h6>
+                                        <small class="text-muted">Biology â€¢ 4.5 MB â€¢ Uploaded Oct 08</small>
+                                    </div>
+                                    <button class="btn btn-light btn-sm"><i data-lucide="download" style="width: 18px;"></i></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="dashboard-card">
+                            <h5 class="fw-bold mb-4">Subject Folders</h5>
+                            <div class="d-flex flex-column gap-3">
+                                <a href="#" class="d-flex align-items-center justify-content-between p-3 border rounded-3 border-secondary border-opacity-10 text-decoration-none text-dark hover-bg-light">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <i data-lucide="folder" class="text-primary"></i>
+                                        <span class="fw-bold">Mathematics</span>
+                                    </div>
+                                    <span class="badge bg-secondary">15</span>
+                                </a>
+                                <a href="#" class="d-flex align-items-center justify-content-between p-3 border rounded-3 border-secondary border-opacity-10 text-decoration-none text-dark hover-bg-light">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <i data-lucide="folder" class="text-success"></i>
+                                        <span class="fw-bold">Science</span>
+                                    </div>
+                                    <span class="badge bg-secondary">22</span>
+                                </a>
+                                <a href="#" class="d-flex align-items-center justify-content-between p-3 border rounded-3 border-secondary border-opacity-10 text-decoration-none text-dark hover-bg-light">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <i data-lucide="folder" class="text-accent"></i>
+                                        <span class="fw-bold">English</span>
+                                    </div>
+                                    <span class="badge bg-secondary">8</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            
+            <!-- Tests & Exams Section -->
+            <div id="section-tests" class="dashboard-section d-none">
+                <!-- Stats Row -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Upcoming Tests</p>
+                                    <h3 class="fw-bold mb-0">2</h3>
+                                </div>
+                                <div class="stat-icon bg-warning bg-opacity-10 text-warning"><i data-lucide="clock"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">In the next 14 days</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Average Score</p>
+                                    <h3 class="fw-bold mb-0">88%</h3>
+                                </div>
+                                <div class="stat-icon bg-primary bg-opacity-10 text-primary"><i data-lucide="bar-chart"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">Top 15% of class</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Highest Score</p>
+                                    <h3 class="fw-bold mb-0">98%</h3>
+                                </div>
+                                <div class="stat-icon bg-success bg-opacity-10 text-success"><i data-lucide="award"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">AP Calculus Midterm</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Missed Exams</p>
+                                    <h3 class="fw-bold mb-0">0</h3>
+                                </div>
+                                <div class="stat-icon bg-secondary bg-opacity-10 text-secondary"><i data-lucide="check-circle"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">Perfect attendance</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Area -->
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="dashboard-card mb-4">
+                            <h5 class="fw-bold mb-4">Exam Schedule</h5>
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle">
+                                    <thead>
+                                        <tr class="text-muted small text-uppercase">
+                                            <th>Date & Time</th>
+                                            <th>Subject</th>
+                                            <th>Type</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Oct 20, 2026 - 10:00 AM</td>
+                                            <td class="fw-medium">Physics Lab</td>
+                                            <td>Mid-term</td>
+                                            <td><span class="badge bg-warning bg-opacity-10 text-warning px-2 py-1">Upcoming</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Oct 25, 2026 - 09:00 AM</td>
+                                            <td class="fw-medium">World History</td>
+                                            <td>Final</td>
+                                            <td><span class="badge bg-warning bg-opacity-10 text-warning px-2 py-1">Upcoming</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nov 05, 2026 - 11:30 AM</td>
+                                            <td class="fw-medium">Computer Science</td>
+                                            <td>Quiz</td>
+                                            <td><span class="badge bg-secondary bg-opacity-10 text-secondary px-2 py-1">Scheduled</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="dashboard-card">
+                            <h5 class="fw-bold mb-4">Recent Results</h5>
+                            <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
+                                <li class="d-flex align-items-start gap-3 border-bottom border-secondary border-opacity-10 pb-3">
+                                    <div class="bg-success bg-opacity-10 text-success p-2 rounded mt-1"><i data-lucide="check" style="width: 18px;"></i></div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-1 fw-bold">AP Calculus Quiz 3</h6>
+                                        <p class="text-muted small mb-0">Grade: A+ (98%)</p>
+                                    </div>
+                                </li>
+                                <li class="d-flex align-items-start gap-3 border-bottom border-secondary border-opacity-10 pb-3">
+                                    <div class="bg-primary bg-opacity-10 text-primary p-2 rounded mt-1"><i data-lucide="check" style="width: 18px;"></i></div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-1 fw-bold">Literature Essay</h6>
+                                        <p class="text-muted small mb-0">Grade: B+ (85%)</p>
+                                    </div>
+                                </li>
+                                <li class="d-flex align-items-start gap-3">
+                                    <div class="bg-success bg-opacity-10 text-success p-2 rounded mt-1"><i data-lucide="check" style="width: 18px;"></i></div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-1 fw-bold">Science Practical</h6>
+                                        <p class="text-muted small mb-0">Grade: A (92%)</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Assignments Section -->
+            <div id="section-assignments" class="dashboard-section d-none">
+                <!-- Stats Row -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Pending</p>
+                                    <h3 class="fw-bold mb-0">4</h3>
+                                </div>
+                                <div class="stat-icon bg-warning bg-opacity-10 text-warning"><i data-lucide="clock"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">Action Required</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Submitted</p>
+                                    <h3 class="fw-bold mb-0">15</h3>
+                                </div>
+                                <div class="stat-icon bg-success bg-opacity-10 text-success"><i data-lucide="check-square"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">This semester</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Overdue</p>
+                                    <h3 class="fw-bold mb-0">1</h3>
+                                </div>
+                                <div class="stat-icon bg-danger bg-opacity-10 text-danger"><i data-lucide="alert-circle"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">Submit immediately</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Avg Grade</p>
+                                    <h3 class="fw-bold mb-0">A</h3>
+                                </div>
+                                <div class="stat-icon bg-primary bg-opacity-10 text-primary"><i data-lucide="star"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">Keep it up!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Area -->
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="dashboard-card mb-4">
+                            <h5 class="fw-bold mb-4">Active Assignments</h5>
+                            <div class="d-flex flex-column gap-3">
+                                <div class="d-flex align-items-center gap-3 p-3 border rounded-3 border-danger border-opacity-25 bg-danger bg-opacity-10">
+                                    <div class="bg-danger text-white p-3 rounded-3 text-center" style="min-width: 80px;">
+                                        <h5 class="fw-bold mb-0">Oct 9</h5>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="fw-bold mb-1 text-danger">World History Essay (OVERDUE)</h6>
+                                        <p class="text-muted small mb-0">Chapter 4 - The Renaissance</p>
+                                    </div>
+                                    <button class="btn btn-danger btn-sm px-3">Submit Now</button>
+                                </div>
+                                <div class="d-flex align-items-center gap-3 p-3 border rounded-3 border-secondary border-opacity-10">
+                                    <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-3 text-center" style="min-width: 80px;">
+                                        <h5 class="fw-bold mb-0">Oct 14</h5>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="fw-bold mb-1">Physics Lab Report</h6>
+                                        <p class="text-muted small mb-0">Experiment #3 - Thermodynamics</p>
+                                    </div>
+                                    <button class="btn btn-outline-custom btn-sm px-3">Upload</button>
+                                </div>
+                                <div class="d-flex align-items-center gap-3 p-3 border rounded-3 border-secondary border-opacity-10">
+                                    <div class="bg-accent bg-opacity-10 text-accent p-3 rounded-3 text-center" style="min-width: 80px;">
+                                        <h5 class="fw-bold mb-0">Oct 18</h5>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="fw-bold mb-1">Calculus Worksheet 5</h6>
+                                        <p class="text-muted small mb-0">Integration Techniques</p>
+                                    </div>
+                                    <button class="btn btn-outline-custom btn-sm px-3">Upload</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="dashboard-card">
+                            <h5 class="fw-bold mb-4">Recent Submissions</h5>
+                            <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
+                                <li class="d-flex align-items-start gap-3">
+                                    <div class="bg-success bg-opacity-10 text-success p-2 rounded mt-1"><i data-lucide="check-circle" style="width: 18px;"></i></div>
+                                    <div>
+                                        <h6 class="mb-1 fw-bold">Literature Reflection</h6>
+                                        <p class="text-muted small mb-0">Submitted Oct 08</p>
+                                    </div>
+                                </li>
+                                <li class="d-flex align-items-start gap-3">
+                                    <div class="bg-success bg-opacity-10 text-success p-2 rounded mt-1"><i data-lucide="check-circle" style="width: 18px;"></i></div>
+                                    <div>
+                                        <h6 class="mb-1 fw-bold">Computer Science Project</h6>
+                                        <p class="text-muted small mb-0">Submitted Oct 05</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Section -->
+            <div id="section-progress" class="dashboard-section d-none">
+                <!-- Stats Row -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Current GPA</p>
+                                    <h3 class="fw-bold mb-0">3.8</h3>
+                                </div>
+                                <div class="stat-icon bg-primary bg-opacity-10 text-primary"><i data-lucide="trending-up"></i></div>
+                            </div>
+                            <div class="d-flex align-items-center gap-1 text-success small fw-medium">
+                                <i data-lucide="arrow-up-right" style="width: 14px;"></i> +0.2 from last term
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Credits Earned</p>
+                                    <h3 class="fw-bold mb-0">45</h3>
+                                </div>
+                                <div class="stat-icon bg-success bg-opacity-10 text-success"><i data-lucide="award"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">Out of 60 required</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Class Rank</p>
+                                    <h3 class="fw-bold mb-0">Top 10%</h3>
+                                </div>
+                                <div class="stat-icon bg-accent bg-opacity-10 text-accent"><i data-lucide="users"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">Excellent standing</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Milestones</p>
+                                    <h3 class="fw-bold mb-0">12</h3>
+                                </div>
+                                <div class="stat-icon bg-secondary bg-opacity-10 text-secondary"><i data-lucide="target"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">Goals achieved</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Area -->
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="dashboard-card mb-4">
+                            <h5 class="fw-bold mb-4">Subject Performance</h5>
+                            <div class="d-flex flex-column gap-4">
+                                <div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span class="fw-bold">Mathematics</span>
+                                        <span class="text-primary fw-bold">95% (A)</span>
+                                    </div>
+                                    <div class="progress-premium" style="height: 10px;">
+                                        <div class="progress-bar bg-primary" style="width: 95%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span class="fw-bold">Science</span>
+                                        <span class="text-success fw-bold">90% (A-)</span>
+                                    </div>
+                                    <div class="progress-premium" style="height: 10px;">
+                                        <div class="progress-bar bg-success" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span class="fw-bold">English Literature</span>
+                                        <span class="text-accent fw-bold">85% (B+)</span>
+                                    </div>
+                                    <div class="progress-premium" style="height: 10px;">
+                                        <div class="progress-bar bg-accent" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span class="fw-bold">History</span>
+                                        <span class="text-warning fw-bold">78% (C+)</span>
+                                    </div>
+                                    <div class="progress-premium" style="height: 10px;">
+                                        <div class="progress-bar bg-warning" style="width: 78%"></div>
+                                    </div>
+                                    <small class="text-muted mt-1 d-block"><i data-lucide="info" style="width:12px"></i> Focus needed here</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="dashboard-card">
+                            <h5 class="fw-bold mb-4">Teacher Feedback</h5>
+                            <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
+                                <li class="d-flex align-items-start gap-3 border-bottom border-secondary border-opacity-10 pb-3">
+                                    <img src="assets/images/image2.png" alt="Teacher" class="rounded-circle" width="32" height="32" style="object-fit:cover">
+                                    <div>
+                                        <h6 class="mb-1 fw-bold">Dr. Chen (Physics)</h6>
+                                        <p class="text-muted small mb-0">"Excellent grasp of kinetics concepts. Keep it up!"</p>
+                                    </div>
+                                </li>
+                                <li class="d-flex align-items-start gap-3">
+                                    <img src="assets/images/image3.png" alt="Teacher" class="rounded-circle" width="32" height="32" style="object-fit:cover">
+                                    <div>
+                                        <h6 class="mb-1 fw-bold">Mr. Smith (History)</h6>
+                                        <p class="text-muted small mb-0">"Need to review the Renaissance chapter before the final."</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Announcements Section -->
+            <div id="section-announcements" class="dashboard-section d-none">
+                <!-- Stats Row -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-4">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">New Updates</p>
+                                    <h3 class="fw-bold mb-0">3</h3>
+                                </div>
+                                <div class="stat-icon bg-primary bg-opacity-10 text-primary"><i data-lucide="bell"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">Unread announcements</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Total Broadcasts</p>
+                                    <h3 class="fw-bold mb-0">24</h3>
+                                </div>
+                                <div class="stat-icon bg-secondary bg-opacity-10 text-secondary"><i data-lucide="radio"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">This semester</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <p class="text-muted small fw-bold mb-1">Important</p>
+                                    <h3 class="fw-bold mb-0">1</h3>
+                                </div>
+                                <div class="stat-icon bg-danger bg-opacity-10 text-danger"><i data-lucide="alert-circle"></i></div>
+                            </div>
+                            <p class="text-muted small mb-0">Action required</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Area -->
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="dashboard-card h-auto">
+                            <h5 class="fw-bold mb-4">Recent Announcements</h5>
+                            <ul class="list-unstyled mb-0 d-flex flex-column gap-4">
+                                <li class="d-flex gap-3 pb-3 border-bottom border-secondary border-opacity-10">
+                                    <div class="icon-box bg-danger bg-opacity-10 text-danger flex-shrink-0" style="width:40px; height:40px;"><i data-lucide="calendar"></i></div>
+                                    <div>
+                                        <h6 class="mb-1 fw-bold">Final Exam Schedule Posted</h6>
+                                        <p class="text-muted small mb-2">The schedule for the upcoming final exams has been finalized and posted on the notice board.</p>
+                                        <span class="badge bg-danger bg-opacity-10 text-danger px-2 py-1" style="font-size:0.75rem">Important</span>
+                                        <small class="text-muted ms-2">Today, 9:00 AM</small>
+                                    </div>
+                                </li>
+                                <li class="d-flex gap-3 pb-3 border-bottom border-secondary border-opacity-10">
+                                    <div class="icon-box bg-primary bg-opacity-10 text-primary flex-shrink-0" style="width:40px; height:40px;"><i data-lucide="award"></i></div>
+                                    <div>
+                                        <h6 class="mb-1 fw-bold">Science Fair Registration</h6>
+                                        <p class="text-muted small mb-2">Registration for the annual Science Fair is now open. Submit your project proposals by Friday.</p>
+                                        <small class="text-muted">Yesterday, 2:30 PM</small>
+                                    </div>
+                                </li>
+                                <li class="d-flex gap-3">
+                                    <div class="icon-box bg-success bg-opacity-10 text-success flex-shrink-0" style="width:40px; height:40px;"><i data-lucide="book-open"></i></div>
+                                    <div>
+                                        <h6 class="mb-1 fw-bold">New Library Books Available</h6>
+                                        <p class="text-muted small mb-2">A new batch of reference books for Mathematics and Physics has arrived at the library.</p>
+                                        <small class="text-muted">2 Days ago</small>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Section -->
+            <div id="section-profile" class="dashboard-section d-none">
+                <!-- Main Area -->
+                <div class="row g-4">
+                    <div class="col-lg-4">
+                        <div class="dashboard-card h-auto text-center">
+                            <div class="rounded-circle border d-flex align-items-center justify-content-center bg-primary text-white fw-bold shadow mx-auto mb-3" style="width: 120px; height: 120px; font-size: 3rem;">
+                                A
+                            </div>
+                            <h4 class="fw-bold mb-1">Alex Johnson</h4>
+                            <p class="text-muted mb-3">Grade 10 • Science Stream</p>
+                            <span class="badge bg-success bg-opacity-10 text-success mb-4 border-0">Active Student</span>
+                            
+                            <ul class="list-unstyled text-start d-flex flex-column gap-3 mb-0">
+                                <li class="d-flex align-items-center gap-3">
+                                    <i data-lucide="mail" class="text-muted" style="width:18px"></i>
+                                    <span class="text-muted small">alex.j@example.com</span>
+                                </li>
+                                <li class="d-flex align-items-center gap-3">
+                                    <i data-lucide="phone" class="text-muted" style="width:18px"></i>
+                                    <span class="text-muted small">+1 234 567 8900</span>
+                                </li>
+                                <li class="d-flex align-items-center gap-3">
+                                    <i data-lucide="map-pin" class="text-muted" style="width:18px"></i>
+                                    <span class="text-muted small">New York, USA</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="dashboard-card h-auto">
+                            <h5 class="fw-bold mb-4">Account Settings</h5>
+                            <form>
+                                <div class="row g-3 mb-4">
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-bold">First Name</label>
+                                        <input type="text" class="form-control form-control-premium" value="Alex">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-bold">Last Name</label>
+                                        <input type="text" class="form-control form-control-premium" value="Johnson">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-bold">Email Address</label>
+                                        <input type="email" class="form-control form-control-premium" value="alex.j@example.com">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-bold">Phone Number</label>
+                                        <input type="text" class="form-control form-control-premium" value="+1 234 567 8900">
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-premium btn-primary-custom">Save Changes</button>
+                            </form>
+
+                            <hr class="my-4 border-secondary border-opacity-10">
+
+                            <h5 class="fw-bold mb-4"><i data-lucide="bell" class="me-2"></i>Notification Preferences</h5>
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="emailNotif" checked>
+                                <label class="form-check-label ms-2 small fw-bold" for="emailNotif">Email Notifications</label>
+                            </div>
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="smsNotif">
+                                <label class="form-check-label ms-2 small fw-bold" for="smsNotif">SMS Alerts</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="weeklyReport" checked>
+                                <label class="form-check-label ms-2 small fw-bold" for="weeklyReport">Weekly Progress Report</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End Sections Container -->
+    </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
+        <i data-lucide="arrow-up"></i>
+    </button>
+</body>
+</html>
+
+
+
+
+

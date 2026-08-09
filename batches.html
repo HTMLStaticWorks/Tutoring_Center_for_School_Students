@@ -1,0 +1,401 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes & Batch Timings | BrightPath Learning Center</title>
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        .filter-sidebar {
+            background-color: var(--bp-card-bg);
+            border-radius: var(--bp-radius-lg);
+            border: 1px solid var(--bp-border);
+            padding: 2rem;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .batch-card {
+            background-color: var(--bp-card-bg);
+            border-radius: var(--bp-radius-lg);
+            border: 1px solid var(--bp-border);
+            padding: 1.5rem;
+            transition: var(--bp-transition);
+            margin-bottom: 1.5rem;
+        }
+        
+        .batch-card:hover {
+            box-shadow: var(--bp-shadow-hover);
+            border-color: var(--bp-primary);
+            transform: translateY(-3px);
+        }
+        
+        .form-check-input:checked {
+            background-color: var(--bp-primary);
+            border-color: var(--bp-primary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-xl navbar-premium fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i data-lucide="graduation-cap" class="text-accent"></i>
+                <span class="text-primary fw-bold">BrightPath</span>
+            </a>
+            
+            <div class="d-flex align-items-center order-xl-3 gap-3">
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+            
+            <div class="collapse navbar-collapse order-xl-2" id="navbarNav">
+                <ul class="navbar-nav mx-auto text-center">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle-custom" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Home <i data-lucide="chevron-down" class="dropdown-icon ms-1"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-custom">
+                            <li><a class="dropdown-item dropdown-item-custom" href="index.html">Home 1</a></li>
+                            <li><a class="dropdown-item dropdown-item-custom" href="home-2.html">Home 2</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="service.html">Service</a></li>
+                    <li class="nav-item"><a class="nav-link" href="subjects.html">Subjects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tutors.html">Tutors</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="batches.html">Batches</a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="section-padding bg-primary position-relative overflow-hidden pt-5" style="margin-top: 76px;">
+        <div class="container position-relative z-index-2 pt-5 pb-3">
+            <div class="row text-center justify-content-center">
+                <div class="col-lg-8" data-aos="fade-up">
+                    <div class="badge-premium bg-white text-primary border-0 mb-3">Schedule</div>
+                    <h1 class="display-4 fw-bold text-white mb-4">Classes & Batch Timings</h1>
+                    <p class="fs-5 text-white-50">Find the perfect schedule that aligns with your school hours. Filter by grade, subject, or preferred tutor.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Interactive Schedule Section -->
+    <section class="section-padding pt-0">
+        <div class="container">
+            <div class="row g-4">
+                
+                <!-- Sidebar Filters -->
+                <div class="col-lg-3" data-aos="fade-right">
+                    <div class="filter-sidebar">
+                        <h5 class="fw-bold mb-4 d-flex align-items-center gap-2"><i data-lucide="filter" style="width: 20px;"></i> Filters</h5>
+                        
+                        <!-- Grade Filter -->
+                        <div class="mb-4">
+                            <h6 class="fw-bold mb-3 text-dark">Grade Level</h6>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="gradePrimary" checked>
+                                <label class="form-check-label text-muted" for="gradePrimary">Primary (1-5)</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="gradeMiddle" checked>
+                                <label class="form-check-label text-muted" for="gradeMiddle">Middle School (6-8)</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="gradeHigh" checked>
+                                <label class="form-check-label text-muted" for="gradeHigh">High School (9-12)</label>
+                            </div>
+                        </div>
+
+                        <hr class="my-4 border-secondary opacity-10">
+
+                        <!-- Subject Filter -->
+                        <div class="mb-4">
+                            <h6 class="fw-bold mb-3 text-dark">Subject</h6>
+                            <select class="form-select form-control-premium text-muted">
+                                <option value="all">All Subjects</option>
+                                <option value="math">Mathematics</option>
+                                <option value="science">Science</option>
+                                <option value="english">English Language</option>
+                                <option value="cs">Computer Science</option>
+                            </select>
+                        </div>
+                        
+                        <hr class="my-4 border-secondary opacity-10">
+                        
+                        <!-- Time Filter -->
+                        <div class="mb-4">
+                            <h6 class="fw-bold mb-3 text-dark">Time of Day</h6>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="timeFilter" id="timeAll" checked>
+                                <label class="form-check-label text-muted" for="timeAll">Any Time</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="timeFilter" id="timeMorning">
+                                <label class="form-check-label text-muted" for="timeMorning">Morning (8 AM - 12 PM)</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="timeFilter" id="timeEvening">
+                                <label class="form-check-label text-muted" for="timeEvening">Evening (4 PM - 8 PM)</label>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary-custom w-100 rounded-pill">Apply Filters</button>
+                    </div>
+                </div>
+                
+                <!-- Batch Listings -->
+                <div class="col-lg-9" data-aos="fade-left">
+                    
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <p class="text-muted mb-0">Showing <strong class="text-dark">12</strong> batches matching your criteria</p>
+                        <select class="form-select form-control-premium w-auto text-muted">
+                            <option>Sort by: Newest</option>
+                            <option>Sort by: Available Seats</option>
+                            <option>Sort by: Subject A-Z</option>
+                        </select>
+                    </div>
+
+                    <!-- Batch Item 1 -->
+                    <div class="batch-card">
+                        <div class="row align-items-center g-4">
+                            <div class="col-md-3 text-center border-md-end">
+                                <div class="badge bg-primary text-white px-3 py-2 rounded-pill fw-bold mb-2">Batch M-101</div>
+                                <h5 class="fw-bold mb-0 text-dark">AP Calculus</h5>
+                                <small class="text-muted">High School (9-12)</small>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row g-3">
+                                    <div class="col-sm-6">
+                                        <div class="d-flex align-items-center gap-2 text-muted mb-1">
+                                            <i data-lucide="user" style="width:16px;"></i> <span>Tutor</span>
+                                        </div>
+                                        <p class="fw-medium mb-0">Dr. Sarah Jenkins</p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="d-flex align-items-center gap-2 text-muted mb-1">
+                                            <i data-lucide="clock" style="width:16px;"></i> <span>Duration</span>
+                                        </div>
+                                        <p class="fw-medium mb-0">1.5 Hours / Class</p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="d-flex align-items-center gap-2 text-muted mb-1">
+                                            <i data-lucide="calendar" style="width:16px;"></i> <span>Days</span>
+                                        </div>
+                                        <p class="fw-medium mb-0">Mon, Wed, Fri</p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="d-flex align-items-center gap-2 text-muted mb-1">
+                                            <i data-lucide="sun" style="width:16px;"></i> <span>Timing</span>
+                                        </div>
+                                        <p class="fw-medium mb-0">4:00 PM - 5:30 PM (Evening)</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 text-md-end text-center">
+                                <div class="mb-3">
+                                    <span class="fs-5 fw-bold text-success">3 Seats Left</span>
+                                    <div class="progress-premium mt-2 success">
+                                        <div class="progress-bar" style="width: 70%"></div>
+                                    </div>
+                                    <small class="text-muted d-block mt-1">7 / 10 Enrolled</small>
+                                </div>
+                                <a href="admissions.html?batch=M-101" class="btn btn-outline-custom rounded-pill w-100">Enroll Now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Batch Item 2 -->
+                    <div class="batch-card">
+                        <div class="row align-items-center g-4">
+                            <div class="col-md-3 text-center border-md-end">
+                                <div class="badge bg-secondary text-white px-3 py-2 rounded-pill fw-bold mb-2">Batch S-204</div>
+                                <h5 class="fw-bold mb-0 text-dark">Gen. Science</h5>
+                                <small class="text-muted">Middle School (6-8)</small>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row g-3">
+                                    <div class="col-sm-6">
+                                        <div class="d-flex align-items-center gap-2 text-muted mb-1">
+                                            <i data-lucide="user" style="width:16px;"></i> <span>Tutor</span>
+                                        </div>
+                                        <p class="fw-medium mb-0">Mark Thompson</p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="d-flex align-items-center gap-2 text-muted mb-1">
+                                            <i data-lucide="clock" style="width:16px;"></i> <span>Duration</span>
+                                        </div>
+                                        <p class="fw-medium mb-0">1 Hour / Class</p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="d-flex align-items-center gap-2 text-muted mb-1">
+                                            <i data-lucide="calendar" style="width:16px;"></i> <span>Days</span>
+                                        </div>
+                                        <p class="fw-medium mb-0">Tue, Thu</p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="d-flex align-items-center gap-2 text-muted mb-1">
+                                            <i data-lucide="sun" style="width:16px;"></i> <span>Timing</span>
+                                        </div>
+                                        <p class="fw-medium mb-0">9:00 AM - 10:00 AM (Morning)</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 text-md-end text-center">
+                                <div class="mb-3">
+                                    <span class="fs-5 fw-bold text-danger">Full Batch</span>
+                                    <div class="progress-premium mt-2">
+                                        <div class="progress-bar bg-danger" style="width: 100%"></div>
+                                    </div>
+                                    <small class="text-muted d-block mt-1">10 / 10 Enrolled</small>
+                                </div>
+                                <button class="btn btn-light rounded-pill w-100 border text-muted" disabled>Join Waitlist</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Batch Item 3 -->
+                    <div class="batch-card">
+                        <div class="row align-items-center g-4">
+                            <div class="col-md-3 text-center border-md-end">
+                                <div class="badge bg-accent text-white px-3 py-2 rounded-pill fw-bold mb-2">Batch E-052</div>
+                                <h5 class="fw-bold mb-0 text-dark">Creative Writing</h5>
+                                <small class="text-muted">Primary (1-5)</small>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row g-3">
+                                    <div class="col-sm-6">
+                                        <div class="d-flex align-items-center gap-2 text-muted mb-1">
+                                            <i data-lucide="user" style="width:16px;"></i> <span>Tutor</span>
+                                        </div>
+                                        <p class="fw-medium mb-0">Elena Rodriguez</p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="d-flex align-items-center gap-2 text-muted mb-1">
+                                            <i data-lucide="clock" style="width:16px;"></i> <span>Duration</span>
+                                        </div>
+                                        <p class="fw-medium mb-0">1 Hour / Class</p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="d-flex align-items-center gap-2 text-muted mb-1">
+                                            <i data-lucide="calendar" style="width:16px;"></i> <span>Days</span>
+                                        </div>
+                                        <p class="fw-medium mb-0">Saturday, Sunday</p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="d-flex align-items-center gap-2 text-muted mb-1">
+                                            <i data-lucide="sun" style="width:16px;"></i> <span>Timing</span>
+                                        </div>
+                                        <p class="fw-medium mb-0">10:00 AM - 11:00 AM (Morning)</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 text-md-end text-center">
+                                <div class="mb-3">
+                                    <span class="fs-5 fw-bold text-success">5 Seats Left</span>
+                                    <div class="progress-premium mt-2 success">
+                                        <div class="progress-bar" style="width: 50%"></div>
+                                    </div>
+                                    <small class="text-muted d-block mt-1">5 / 10 Enrolled</small>
+                                </div>
+                                <a href="admissions.html?batch=E-052" class="btn btn-outline-custom rounded-pill w-100">Enroll Now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer mt-5">
+        <div class="container">
+            <div class="row g-5 mb-5">
+                <div class="col-lg-4">
+                    <a class="navbar-brand mb-4" href="index.html" style="color: var(--bp-primary) !important;">
+                        <i data-lucide="graduation-cap" class="text-accent"></i>
+                        BrightPath
+                    </a>
+                    <p class="mb-4">Empowering students to achieve academic excellence through personalized tutoring and innovative learning methods.</p>
+                                        <div class="d-flex gap-3">
+                        <a href="#" class="btn btn-outline-custom rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                        </a>
+                        <a href="#" class="btn btn-outline-custom rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                        <a href="#" class="btn btn-outline-custom rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="footer-title">Quick Links</h5>
+                    <a href="about.html" class="footer-link">About Us</a>
+                    <a href="tutors.html" class="footer-link">Our Tutors</a>
+                    <a href="batches.html" class="footer-link">Batch Timings</a>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="footer-title">Programs</h5>
+                    <a href="subjects.html#primary" class="footer-link">Primary School</a>
+                    <a href="subjects.html#middle" class="footer-link">Middle School</a>
+                    <a href="subjects.html#high" class="footer-link">High School</a>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h5 class="footer-title">Contact Us</h5>
+                    <div class="d-flex mb-3 text-muted">
+                        <i data-lucide="map-pin" class="me-3 text-accent" style="flex-shrink: 0;"></i>
+                        <span>123 Education Boulevard,<br>Learning District, NY 10001</span>
+                    </div>
+                    <div class="d-flex mb-3 text-muted">
+                        <i data-lucide="phone" class="me-3 text-accent" style="flex-shrink: 0;"></i>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="d-flex text-muted">
+                        <i data-lucide="mail" class="me-3 text-accent" style="flex-shrink: 0;"></i>
+                        <span>hello@brightpath.edu</span>
+                    </div>
+                </div>
+            </div>
+            <div class="border-top pt-4 mt-4 text-center" style="border-color: var(--bp-border) !important;">
+                <p class="mb-0 text-muted">&copy; 2026 BrightPath Learning Center. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/main.js"></script>
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
+        <i data-lucide="arrow-up"></i>
+    </button>
+</body>
+</html>
+
+
+
+
+
+

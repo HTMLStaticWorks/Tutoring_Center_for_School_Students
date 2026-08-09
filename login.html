@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login | BrightPath Learning Center</title>
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bp-background);
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .auth-form-wrapper {
+            width: 100%;
+            max-width: 450px;
+            background: var(--bp-card-bg);
+            border-radius: var(--bp-radius-lg);
+            border: 1px solid var(--bp-border);
+            box-shadow: var(--bp-shadow-soft);
+            padding: 2.5rem 2rem;
+        }
+        
+        .top-controls {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 10;
+        }
+        
+        @media (max-width: 575.98px) {
+            .auth-container {
+                padding: 1rem;
+            }
+            .auth-form-wrapper {
+                padding: 2rem 1.25rem;
+            }
+        }
+        
+        [dir="rtl"] .top-controls {
+            right: auto;
+            left: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Controls -->
+    <div class="top-controls">
+        <button class="theme-toggle rtl-toggle" aria-label="Toggle RTL">
+            <i data-lucide="arrow-right-left"></i>
+        </button>
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+            <i data-lucide="moon"></i>
+        </button>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-form-wrapper" data-aos="fade-up">
+            <!-- Logo -->
+            <div class="mb-4 text-center">
+                <a class="navbar-brand d-inline-flex align-items-center gap-2 text-decoration-none" href="index.html">
+                    <i data-lucide="graduation-cap" class="text-accent" style="width: 32px; height: 32px;"></i>
+                    <span class="fs-3 fw-bold text-primary">BrightPath</span>
+                </a>
+            </div>
+            
+            <div class="mb-4 text-center">
+                <h3 class="fw-bold mb-2">Student Login</h3>
+                <p class="text-muted small">Enter your credentials to access your account</p>
+            </div>
+            
+            <form id="loginForm" action="dashboard.html">
+                <div class="mb-4">
+                    <label class="form-label text-muted small fw-bold">Student ID or Email</label>
+                    <div class="position-relative">
+                        <i data-lucide="mail" class="position-absolute top-50 start-0 translate-middle-y ms-3 text-muted" style="width: 18px;"></i>
+                        <input type="text" class="form-control form-control-premium w-100 ps-5" required>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="form-label text-muted small fw-bold mb-2">Password</label>
+                    <div class="position-relative mb-3">
+                        <i data-lucide="lock" class="position-absolute top-50 start-0 translate-middle-y ms-3 text-muted" style="width: 18px;"></i>
+                        <input type="password" class="form-control form-control-premium w-100 ps-5 pe-5" required>
+                        <a href="#" class="position-absolute top-50 end-0 translate-middle-y me-3 text-muted text-decoration-none">
+                            <i data-lucide="eye" style="width: 18px;"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="form-check mb-0 text-nowrap">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label text-muted small text-nowrap" for="rememberMe">Remember me</label>
+                        </div>
+                        <a href="#" class="small text-primary text-decoration-none fw-medium text-nowrap">Forgot Password?</a>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary-custom btn-premium w-100 mb-4 mt-2">Log In to Dashboard <i data-lucide="arrow-right" class="ms-2" style="width: 16px;"></i></button>
+                
+                <div class="text-center">
+                    <p class="text-muted small mb-0">Don't have an account? <a href="register.html" class="fw-bold text-primary text-decoration-none">Register here</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button[type="submit"]');
+            btn.innerHTML = '<i class="spinner-border spinner-border-sm me-2"></i> Authenticating...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1000);
+        });
+    </script>
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
+        <i data-lucide="arrow-up"></i>
+    </button>
+</body>
+</html>
+
+
+
+
+

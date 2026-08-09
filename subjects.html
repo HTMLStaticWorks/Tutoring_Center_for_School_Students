@@ -1,0 +1,722 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subjects & Curriculum | BrightPath Learning Center</title>
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        .nav-pills-custom .nav-link {
+            color: var(--bp-muted);
+            background-color: var(--bp-background);
+            border: 1px solid var(--bp-border);
+            border-radius: var(--bp-radius-sm);
+            padding: 1rem 2rem;
+            font-weight: 600;
+            transition: var(--bp-transition);
+        }
+        
+        .nav-pills-custom .nav-link.active {
+            color: #fff !important;
+            background-color: var(--bp-primary);
+            border-color: var(--bp-primary);
+            box-shadow: var(--bp-shadow-soft);
+        }
+        
+        .subject-accordion .accordion-item {
+            border: 1px solid var(--bp-border);
+            border-radius: var(--bp-radius-md) !important;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            background: var(--bp-card-bg);
+            box-shadow: var(--bp-shadow-soft);
+        }
+        
+        .subject-accordion .accordion-button {
+            background: var(--bp-card-bg);
+            color: var(--bp-text);
+            font-weight: 700;
+            font-size: 1.25rem;
+            padding: 1.5rem 2rem;
+        }
+        
+        .subject-accordion .accordion-button:not(.collapsed) {
+            background: rgba(37, 99, 235, 0.05);
+            color: var(--bp-primary);
+            box-shadow: none;
+        }
+        
+        .subject-accordion .accordion-button::after {
+            background-size: 1.25rem;
+        }
+        
+        .subject-detail-nav .nav-link {
+            color: var(--bp-muted);
+            border-bottom: 2px solid transparent;
+            padding: 0.75rem 1rem;
+            border-radius: 0;
+            font-weight: 500;
+        }
+        
+        .subject-detail-nav .nav-link.active {
+            color: var(--bp-primary);
+            background: transparent;
+            border-bottom-color: var(--bp-primary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-xl navbar-premium fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i data-lucide="graduation-cap" class="text-accent"></i>
+                <span class="text-primary fw-bold">BrightPath</span>
+            </a>
+            
+            <div class="d-flex align-items-center order-xl-3 gap-3">
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+            
+            <div class="collapse navbar-collapse order-xl-2" id="navbarNav">
+                <ul class="navbar-nav mx-auto text-center">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle-custom" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Home <i data-lucide="chevron-down" class="dropdown-icon ms-1"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-custom">
+                            <li><a class="dropdown-item dropdown-item-custom" href="index.html">Home 1</a></li>
+                            <li><a class="dropdown-item dropdown-item-custom" href="home-2.html">Home 2</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="service.html">Service</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="subjects.html">Subjects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tutors.html">Tutors</a></li>
+                    <li class="nav-item"><a class="nav-link" href="batches.html">Batches</a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="section-padding bg-primary position-relative overflow-hidden pt-5" style="margin-top: 76px;">
+        <div class="container position-relative z-index-2 pt-5 pb-3">
+            <div class="row text-center justify-content-center">
+                <div class="col-lg-8" data-aos="fade-up">
+                    <h1 class="display-4 fw-bold text-white mb-4">Comprehensive Programs</h1>
+                    <p class="fs-5 text-white-50">Explore our structured curriculums designed to challenge, inspire, and elevate students across all grade levels.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Subjects Explorer -->
+    <section class="section-padding bg-background">
+        <div class="container">
+            <!-- Grade Tabs -->
+            <ul class="nav nav-pills nav-pills-custom justify-content-center gap-3 mb-5" id="gradeTabs" role="tablist" data-aos="fade-up">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active d-flex align-items-center gap-2" id="high-tab" data-bs-toggle="tab" data-bs-target="#high" type="button" role="tab">
+                        <i data-lucide="graduation-cap"></i> High School (9-12)
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link d-flex align-items-center gap-2" id="middle-tab" data-bs-toggle="tab" data-bs-target="#middle" type="button" role="tab">
+                        <i data-lucide="microscope"></i> Middle School (6-8)
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link d-flex align-items-center gap-2" id="primary-tab" data-bs-toggle="tab" data-bs-target="#primary" type="button" role="tab">
+                        <i data-lucide="puzzle"></i> Primary (1-5)
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Tab Content -->
+            <div class="tab-content" id="gradeTabsContent" data-aos="fade-up" data-aos-delay="100">
+                
+                <!-- High School Panel -->
+                <div class="tab-pane fade show active" id="high" role="tabpanel" tabindex="0">
+                    <div class="accordion subject-accordion" id="accordionHigh">
+                        
+                        <!-- High School Mathematics -->
+                        <div class="accordion-item" id="math">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMathHigh" aria-expanded="true">
+                                    <div class="d-flex align-items-center gap-3 w-100 pe-3">
+                                        <div class="icon-box bg-primary bg-opacity-10 text-primary" style="width: 48px; height: 48px;"><i data-lucide="sigma"></i></div>
+                                        <div>
+                                            <span class="d-block">Advanced Mathematics</span>
+                                            <small class="text-muted fw-normal fs-6">Algebra II, Pre-Calculus, Calculus AB/BC</small>
+                                        </div>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="collapseMathHigh" class="accordion-collapse collapse show" data-bs-parent="#accordionHigh">
+                                <div class="accordion-body p-0">
+                                    <div class="row g-0">
+                                        <div class="col-lg-4 bg-light border-end">
+                                            <img src="assets/images/student-math.webp" alt="Math" class="img-fluid w-100 h-100 object-fit-cover d-none d-lg-block">
+                                        </div>
+                                        <div class="col-lg-8 p-4 p-md-5">
+                                            <ul class="nav nav-tabs subject-detail-nav mb-4" id="mathHighTabs" role="tablist">
+                                                <li class="nav-item" role="presentation">
+                                                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#math-overview" type="button">Overview & Curriculum</button>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#math-tutor" type="button">Tutor & Batches</button>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#math-assessment" type="button">Assessments</button>
+                                                </li>
+                                            </ul>
+                                            
+                                            <div class="tab-content">
+                                                <!-- Overview Tab -->
+                                                <div class="tab-pane fade show active" id="math-overview" role="tabpanel">
+                                                    <h5 class="fw-bold mb-3">Course Overview</h5>
+                                                    <p class="text-muted">Designed for high school students preparing for AP exams and college entry. This course focuses on complex problem-solving, theoretical application, and advanced algebraic functions.</p>
+                                                    <h5 class="fw-bold mt-4 mb-3">Core Curriculum</h5>
+                                                    <ul class="list-unstyled row g-3 text-muted">
+                                                        <li class="col-md-6"><i data-lucide="check" class="text-success me-2" style="width:16px"></i> Trignometric Functions</li>
+                                                        <li class="col-md-6"><i data-lucide="check" class="text-success me-2" style="width:16px"></i> Limits & Continuity</li>
+                                                        <li class="col-md-6"><i data-lucide="check" class="text-success me-2" style="width:16px"></i> Derivatives</li>
+                                                        <li class="col-md-6"><i data-lucide="check" class="text-success me-2" style="width:16px"></i> Integrals & Applications</li>
+                                                    </ul>
+                                                </div>
+                                                
+                                                <!-- Tutor Tab -->
+                                                <div class="tab-pane fade" id="math-tutor" role="tabpanel">
+                                                    <div class="d-flex align-items-center gap-4 mb-4 bg-light p-3 rounded-3 border">
+                                                        <img src="assets/images/tutor-1.webp" alt="Dr. Sarah Jenkins" class="rounded-circle shadow-sm" width="80" height="80" style="object-fit: cover;">
+                                                        <div>
+                                                            <h5 class="fw-bold mb-1">Dr. Sarah Jenkins</h5>
+                                                            <p class="text-muted small mb-2">Ph.D. Applied Math â€¢ 12 Yrs Exp.</p>
+                                                            <a href="tutors.html" class="text-primary text-decoration-none fw-medium small">View Full Profile</a>
+                                                        </div>
+                                                    </div>
+                                                    <h5 class="fw-bold mb-3">Available Batches</h5>
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered table-hover align-middle">
+                                                            <thead class="table-light">
+                                                                <tr>
+                                                                    <th>Days</th>
+                                                                    <th>Time</th>
+                                                                    <th>Seats</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>Mon, Wed, Fri</td>
+                                                                    <td>4:00 PM - 5:30 PM</td>
+                                                                    <td><span class="badge bg-success">3 Left</span></td>
+                                                                    <td><a href="admissions.html" class="btn btn-sm btn-outline-custom">Enroll</a></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Tue, Thu</td>
+                                                                    <td>6:00 PM - 8:00 PM</td>
+                                                                    <td><span class="badge bg-danger">Full</span></td>
+                                                                    <td><button class="btn btn-sm btn-light" disabled>Waitlist</button></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- Assessment Tab -->
+                                                <div class="tab-pane fade" id="math-assessment" role="tabpanel">
+                                                    <h5 class="fw-bold mb-3">Assessment Methodology</h5>
+                                                    <p class="text-muted">We utilize a hybrid assessment model that combines theoretical understanding with time-constrained mock tests simulating actual AP exams.</p>
+                                                    <ul class="list-unstyled text-muted">
+                                                        <li class="mb-2"><strong>Weekly:</strong> 30-minute concept quizzes on the student dashboard.</li>
+                                                        <li class="mb-2"><strong>Monthly:</strong> Comprehensive chapter-end exams.</li>
+                                                        <li class="mb-2"><strong>Quarterly:</strong> Full-length mock AP examinations with detailed analytic reports for parents.</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- High School Physics -->
+                        <div class="accordion-item" id="physics">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePhysicsHigh" aria-expanded="false">
+                                    <div class="d-flex align-items-center gap-3 w-100 pe-3">
+                                        <div class="icon-box bg-secondary bg-opacity-10 text-secondary" style="width: 48px; height: 48px;"><i data-lucide="atom"></i></div>
+                                        <div>
+                                            <span class="d-block">AP Physics</span>
+                                            <small class="text-muted fw-normal fs-6">Mechanics, Electricity, Magnetism</small>
+                                        </div>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="collapsePhysicsHigh" class="accordion-collapse collapse" data-bs-parent="#accordionHigh">
+                                <div class="accordion-body p-0">
+                                    <div class="row g-0">
+                                        <div class="col-lg-4 bg-light border-end">
+                                            <img src="assets/images/subject-physics.webp" alt="Physics" class="img-fluid w-100 h-100 object-fit-cover d-none d-lg-block">
+                                        </div>
+                                        <div class="col-lg-8 p-4 p-md-5">
+                                            <p class="text-muted mb-4">Physics at BrightPath focuses heavily on real-world applications. We break down complex kinetic and thermodynamic concepts into digestible, relatable models.</p>
+                                            <a href="batches.html" class="btn btn-outline-custom">View Batches & Tutors</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- High School Computer Science -->
+                        <div class="accordion-item" id="cs">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCSHigh" aria-expanded="false">
+                                    <div class="d-flex align-items-center gap-3 w-100 pe-3">
+                                        <div class="icon-box bg-accent bg-opacity-10 text-accent" style="width: 48px; height: 48px;"><i data-lucide="terminal"></i></div>
+                                        <div>
+                                            <span class="d-block">Computer Science</span>
+                                            <small class="text-muted fw-normal fs-6">Java, Python, Algorithms, Data Structures</small>
+                                        </div>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="collapseCSHigh" class="accordion-collapse collapse" data-bs-parent="#accordionHigh">
+                                <div class="accordion-body p-0">
+                                    <div class="row g-0">
+                                        <div class="col-lg-4 bg-light border-end">
+                                            <img src="assets/images/computer-science.webp" alt="Computer Science" class="img-fluid w-100 h-100 object-fit-cover d-none d-lg-block">
+                                        </div>
+                                        <div class="col-lg-8 p-4 p-md-5">
+                                            <p class="text-muted mb-4">Our CS curriculum goes beyond syntax. Students learn algorithmic thinking, object-oriented programming in Java, and project-based development.</p>
+                                            <a href="batches.html" class="btn btn-outline-custom">View Batches & Tutors</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Middle School Panel -->
+                <div class="tab-pane fade" id="middle" role="tabpanel" tabindex="0">
+                    <div class="accordion subject-accordion" id="accordionMiddle">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSciMiddle" aria-expanded="false">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="icon-box bg-success bg-opacity-10 text-success" style="width: 48px; height: 48px;"><i data-lucide="leaf"></i></div>
+                                        <div>
+                                            <span class="d-block">Integrated Science</span>
+                                            <small class="text-muted fw-normal fs-6">Earth Science, Basic Biology, Chemistry Foundations</small>
+                                        </div>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="collapseSciMiddle" class="accordion-collapse collapse" data-bs-parent="#accordionMiddle">
+                                <div class="accordion-body p-0">
+                                    <div class="row g-0">
+                                        <div class="col-lg-4 bg-light border-end">
+                                            <img src="assets/images/subject-biology.webp" alt="Science" class="img-fluid w-100 h-100 object-fit-cover d-none d-lg-block">
+                                        </div>
+                                        <div class="col-lg-8 p-4 p-md-5">
+                                            <p class="text-muted mb-4">A comprehensive overview of the natural world, preparing students for specialized high school science courses.</p>
+                                            <a href="batches.html" class="btn btn-outline-custom">View Batches</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Middle School Math -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMathMiddle" aria-expanded="false">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="icon-box bg-primary bg-opacity-10 text-primary" style="width: 48px; height: 48px;"><i data-lucide="calculator"></i></div>
+                                        <div>
+                                            <span class="d-block">Pre-Algebra</span>
+                                            <small class="text-muted fw-normal fs-6">Number Systems, Basic Equations, Geometry</small>
+                                        </div>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="collapseMathMiddle" class="accordion-collapse collapse" data-bs-parent="#accordionMiddle">
+                                <div class="accordion-body p-0">
+                                    <div class="row g-0">
+                                        <div class="col-lg-4 bg-light border-end">
+                                            <img src="assets/images/student-math.webp" alt="Math" class="img-fluid w-100 h-100 object-fit-cover d-none d-lg-block">
+                                        </div>
+                                        <div class="col-lg-8 p-4 p-md-5">
+                                            <p class="text-muted mb-4">Laying down the crucial mathematical foundations needed before entering high school level algebra and calculus.</p>
+                                            <a href="batches.html" class="btn btn-outline-custom">View Batches</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Middle School English -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEngMiddle" aria-expanded="false">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="icon-box bg-warning bg-opacity-10 text-warning" style="width: 48px; height: 48px;"><i data-lucide="book"></i></div>
+                                        <div>
+                                            <span class="d-block">English Literature</span>
+                                            <small class="text-muted fw-normal fs-6">Reading Comprehension, Essay Writing, Grammar</small>
+                                        </div>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="collapseEngMiddle" class="accordion-collapse collapse" data-bs-parent="#accordionMiddle">
+                                <div class="accordion-body p-0">
+                                    <div class="row g-0">
+                                        <div class="col-lg-4 bg-light border-end">
+                                            <img src="assets/images/english-class.webp" alt="English" class="img-fluid w-100 h-100 object-fit-cover d-none d-lg-block">
+                                        </div>
+                                        <div class="col-lg-8 p-4 p-md-5">
+                                            <p class="text-muted mb-4">Developing critical reading skills and effective written communication through diverse literary analysis.</p>
+                                            <a href="batches.html" class="btn btn-outline-custom">View Batches</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Primary Panel -->
+                <div class="tab-pane fade" id="primary" role="tabpanel" tabindex="0">
+                    <div class="accordion subject-accordion" id="accordionPrimary">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEngPrimary" aria-expanded="false">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="icon-box bg-accent bg-opacity-10 text-accent" style="width: 48px; height: 48px;"><i data-lucide="book-open"></i></div>
+                                        <div>
+                                            <span class="d-block">Language Arts</span>
+                                            <small class="text-muted fw-normal fs-6">Reading, Phonics, Creative Writing</small>
+                                        </div>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="collapseEngPrimary" class="accordion-collapse collapse" data-bs-parent="#accordionPrimary">
+                                <div class="accordion-body p-0">
+                                    <div class="row g-0">
+                                        <div class="col-lg-4 bg-light border-end">
+                                            <img src="assets/images/classroom-1.webp" alt="Primary Language" class="img-fluid w-100 h-100 object-fit-cover d-none d-lg-block">
+                                        </div>
+                                        <div class="col-lg-8 p-4 p-md-5">
+                                            <p class="text-muted mb-4">Building vocabulary, reading comprehension, and a lifelong love for stories and communication.</p>
+                                            <a href="batches.html" class="btn btn-outline-custom">View Batches</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Primary Math -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMathPrimary" aria-expanded="false">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="icon-box bg-primary bg-opacity-10 text-primary" style="width: 48px; height: 48px;"><i data-lucide="hash"></i></div>
+                                        <div>
+                                            <span class="d-block">Basic Mathematics</span>
+                                            <small class="text-muted fw-normal fs-6">Arithmetic, Fractions, Measurement</small>
+                                        </div>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="collapseMathPrimary" class="accordion-collapse collapse" data-bs-parent="#accordionPrimary">
+                                <div class="accordion-body p-0">
+                                    <div class="row g-0">
+                                        <div class="col-lg-4 bg-light border-end">
+                                            <img src="assets/images/student-math.webp" alt="Primary Math" class="img-fluid w-100 h-100 object-fit-cover d-none d-lg-block">
+                                        </div>
+                                        <div class="col-lg-8 p-4 p-md-5">
+                                            <p class="text-muted mb-4">An engaging and interactive approach to numbers, helping young minds grasp fundamental mathematical concepts with ease.</p>
+                                            <a href="batches.html" class="btn btn-outline-custom">View Batches</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Primary Science -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSciPrimary" aria-expanded="false">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="icon-box bg-success bg-opacity-10 text-success" style="width: 48px; height: 48px;"><i data-lucide="sun"></i></div>
+                                        <div>
+                                            <span class="d-block">Discovery Science</span>
+                                            <small class="text-muted fw-normal fs-6">Nature, Basic Physics, Health</small>
+                                        </div>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="collapseSciPrimary" class="accordion-collapse collapse" data-bs-parent="#accordionPrimary">
+                                <div class="accordion-body p-0">
+                                    <div class="row g-0">
+                                        <div class="col-lg-4 bg-light border-end">
+                                            <img src="assets/images/science-class.webp" alt="Primary Science" class="img-fluid w-100 h-100 object-fit-cover d-none d-lg-block">
+                                        </div>
+                                        <div class="col-lg-8 p-4 p-md-5">
+                                            <p class="text-muted mb-4">Encouraging curiosity and exploration of the world around us through fun experiments and interactive lessons.</p>
+                                            <a href="batches.html" class="btn btn-outline-custom">View Batches</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Methodology Section -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <img src="assets/images/image36.png" alt="Methodology" class="img-fluid rounded-4 shadow-lg">
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <h2 class="section-title">Our Proven Methodology</h2>
+                    <p class="text-muted mb-4">We believe in a holistic approach to education. Our curriculum is designed not just to help students pass exams, but to foster a deep, lasting understanding of core concepts.</p>
+                    
+                    <div class="d-flex mb-4">
+                        <div class="icon-box bg-primary bg-opacity-10 text-primary flex-shrink-0 me-3" style="width: 48px; height: 48px; border-radius: 50%;">
+                            <i data-lucide="target" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold">Goal-Oriented Learning</h5>
+                            <p class="text-muted small mb-0">Every lesson is structured around clear, achievable objectives that build confidence and competence.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-4">
+                        <div class="icon-box bg-accent bg-opacity-10 text-accent flex-shrink-0 me-3" style="width: 48px; height: 48px; border-radius: 50%;">
+                            <i data-lucide="brain-circuit" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold">Interactive Engagement</h5>
+                            <p class="text-muted small mb-0">We move beyond rote memorization by incorporating interactive exercises and real-world applications.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="icon-box bg-success bg-opacity-10 text-success flex-shrink-0 me-3" style="width: 48px; height: 48px; border-radius: 50%;">
+                            <i data-lucide="line-chart" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold">Continuous Assessment</h5>
+                            <p class="text-muted small mb-0">Regular quizzes and milestones ensure students stay on track and gaps are addressed immediately.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section inside Subjects -->
+    <section class="section-padding bg-white border-top">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Academic FAQs</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item border-0 border-bottom mb-3 pb-2">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed bg-transparent fw-bold fs-5 px-0" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    Do you provide custom study materials?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body px-0 text-muted">
+                                    Yes, BrightPath provides proprietary workbooks, digital resources on the student dashboard, and customized practice sheets tailored to each student's weak areas.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item border-0 border-bottom mb-3 pb-2">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed bg-transparent fw-bold fs-5 px-0" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    Can a student switch subjects or batches mid-semester?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body px-0 text-muted">
+                                    Absolutely. We understand schedules change. You can request a batch transfer through the parent portal, subject to seat availability.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item border-0 border-bottom mb-3 pb-2">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed bg-transparent fw-bold fs-5 px-0" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    How do I track my child's progress?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body px-0 text-muted">
+                                    We provide a comprehensive parent dashboard where you can monitor attendance, view test scores, and read weekly feedback from tutors.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item border-0 border-bottom mb-3 pb-2">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed bg-transparent fw-bold fs-5 px-0" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    Are the tutors certified?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body px-0 text-muted">
+                                    Yes, all our tutors hold advanced degrees in their respective fields and undergo a rigorous certification process before joining BrightPath.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item border-0 border-bottom mb-3 pb-2">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed bg-transparent fw-bold fs-5 px-0" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                    What is the student-to-tutor ratio?
+                                </button>
+                            </h2>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body px-0 text-muted">
+                                    We maintain a strict maximum ratio of 5:1 in our group batches to ensure every student receives personalized attention.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item border-0 border-bottom mb-3 pb-2">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed bg-transparent fw-bold fs-5 px-0" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                                    Do you offer trial classes before enrolling?
+                                </button>
+                            </h2>
+                            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body px-0 text-muted">
+                                    We offer a free initial assessment and a demo class so you can experience our teaching methodology firsthand before making a commitment.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer mt-5">
+        <div class="container">
+            <div class="row g-5 mb-5">
+                <div class="col-lg-4">
+                    <a class="navbar-brand mb-4" href="index.html" style="color: var(--bp-primary) !important;">
+                        <i data-lucide="graduation-cap" class="text-accent"></i>
+                        BrightPath
+                    </a>
+                    <p class="mb-4">Empowering students to achieve academic excellence through personalized tutoring and innovative learning methods.</p>
+                                        <div class="d-flex gap-3">
+                        <a href="#" class="btn btn-outline-custom rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                        </a>
+                        <a href="#" class="btn btn-outline-custom rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                        <a href="#" class="btn btn-outline-custom rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="footer-title">Quick Links</h5>
+                    <a href="about.html" class="footer-link">About Us</a>
+                    <a href="tutors.html" class="footer-link">Our Tutors</a>
+                    <a href="batches.html" class="footer-link">Batch Timings</a>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="footer-title">Programs</h5>
+                    <a href="subjects.html#primary" class="footer-link">Primary School</a>
+                    <a href="subjects.html#middle" class="footer-link">Middle School</a>
+                    <a href="subjects.html#high" class="footer-link">High School</a>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h5 class="footer-title">Contact Us</h5>
+                    <div class="d-flex mb-3 text-muted">
+                        <i data-lucide="map-pin" class="me-3 text-accent" style="flex-shrink: 0;"></i>
+                        <span>123 Education Boulevard,<br>Learning District, NY 10001</span>
+                    </div>
+                    <div class="d-flex mb-3 text-muted">
+                        <i data-lucide="phone" class="me-3 text-accent" style="flex-shrink: 0;"></i>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="d-flex text-muted">
+                        <i data-lucide="mail" class="me-3 text-accent" style="flex-shrink: 0;"></i>
+                        <span>hello@brightpath.edu</span>
+                    </div>
+                </div>
+            </div>
+            <div class="border-top pt-4 mt-4 text-center" style="border-color: var(--bp-border) !important;">
+                <p class="mb-0 text-muted">&copy; 2026 BrightPath Learning Center. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Check URL hash to open specific tab automatically
+        document.addEventListener("DOMContentLoaded", () => {
+            const hash = window.location.hash;
+            if (hash) {
+                if (hash === '#math' || hash === '#physics' || hash === '#cs') {
+                    const highTab = new bootstrap.Tab(document.querySelector('#high-tab'));
+                    highTab.show();
+                    if (hash === '#physics') {
+                        document.querySelector('#collapsePhysicsHigh').classList.add('show');
+                        document.querySelector('#collapseMathHigh').classList.remove('show');
+                    }
+                } else if (hash === '#middle') {
+                    const middleTab = new bootstrap.Tab(document.querySelector('#middle-tab'));
+                    middleTab.show();
+                } else if (hash === '#primary') {
+                    const primaryTab = new bootstrap.Tab(document.querySelector('#primary-tab'));
+                    primaryTab.show();
+                }
+            }
+        });
+    </script>
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
+        <i data-lucide="arrow-up"></i>
+    </button>
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrightPath Learning | Home 2</title>
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        /* Home 2 Specific Styles for Editorial Look */
+        .editorial-hero {
+            height: 100vh;
+            min-height: 800px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .editorial-title {
+            font-size: clamp(3rem, 7vw, 6rem);
+            line-height: 1;
+            letter-spacing: -0.03em;
+            margin-bottom: 2rem;
+            color: #FFFFFF;
+        }
+        
+        .editorial-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 300;
+            max-width: 600px;
+        }
+        
+        .large-number {
+            font-size: 8rem;
+            font-weight: 800;
+            line-height: 1;
+            color: var(--bp-border);
+            opacity: 0.5;
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            z-index: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        
+        .editorial-card {
+            border-radius: 0;
+            border-top: 4px solid var(--bp-primary);
+            background: var(--bp-card-bg);
+            padding: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 2rem 0;
+            background: var(--bp-primary);
+            color: white;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 2rem;
+            text-transform: uppercase;
+        }
+        
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar (Same as Home 1) -->
+    <nav class="navbar navbar-expand-xl navbar-premium fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i data-lucide="graduation-cap" class="text-accent"></i>
+                <span class="text-primary fw-bold">BrightPath</span>
+            </a>
+            
+            <div class="d-flex align-items-center order-xl-3 gap-3">
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+            
+            <div class="collapse navbar-collapse order-xl-2" id="navbarNav">
+                <ul class="navbar-nav mx-auto text-center">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle-custom active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Home <i data-lucide="chevron-down" class="dropdown-icon ms-1"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-custom">
+                            <li><a class="dropdown-item dropdown-item-custom" href="index.html">Home 1</a></li>
+                            <li><a class="dropdown-item dropdown-item-custom active" href="home-2.html">Home 2</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="service.html">Service</a></li>
+                    <li class="nav-item"><a class="nav-link" href="subjects.html">Subjects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tutors.html">Tutors</a></li>
+                    <li class="nav-item"><a class="nav-link" href="batches.html">Batches</a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Immersive Hero -->
+    <header class="editorial-hero">
+        <div class="position-absolute top-0 start-0 w-100 h-100">
+            <img src="assets/images/campus-1.webp" alt="Campus" class="img-cover" style="object-position: center 30%;">
+            <div class="image-overlay" style="background: linear-gradient(to right, rgba(15,23,42,0.9) 0%, rgba(15,23,42,0.3) 100%);"></div>
+        </div>
+        <div class="container position-relative z-index-2">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8" data-aos="fade-up" data-aos-duration="1200">
+                    <h1 class="editorial-title">Every Student<br>Has Potential.</h1>
+                    <p class="editorial-subtitle mb-5 mx-auto">We Help Them Unlock It through immersive learning experiences and elite mentorship.</p>
+                    <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center gap-3 gap-sm-4">
+                        <a href="subjects.html" class="btn btn-primary-custom btn-premium btn-lg w-100 w-sm-auto" style="max-width: 260px;">Explore Programs</a>
+                        <a href="#philosophy" class="text-white text-decoration-none fw-medium d-flex justify-content-center align-items-center gap-2 border border-white rounded-pill px-4 py-2 w-100 w-sm-auto" style="max-width: 260px; height: 48px;">
+                            <span><i data-lucide="arrow-down"></i></span> Discover More
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5 pt-5 d-none d-lg-flex justify-content-center text-start">
+                <div class="col-auto px-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="border-start border-2 border-primary ps-3">
+                        <h4 class="text-white fw-bold h3 mb-1">98%</h4>
+                        <p class="text-white-50 small mb-0">University Acceptance</p>
+                    </div>
+                </div>
+                <div class="col-auto px-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="border-start border-2 border-accent ps-3">
+                        <h4 class="text-white fw-bold h3 mb-1">50+</h4>
+                        <p class="text-white-50 small mb-0">Certified Tutors</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Marquee -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            EMPOWERING MINDS â€¢ FOSTERING CREATIVITY â€¢ ACHIEVING EXCELLENCE â€¢ BUILDING FUTURES â€¢ EMPOWERING MINDS â€¢ FOSTERING CREATIVITY â€¢ ACHIEVING EXCELLENCE â€¢ BUILDING FUTURES â€¢ 
+        </div>
+    </div>
+
+    <!-- Learning Philosophy -->
+    <section id="philosophy" class="section-padding bg-white">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 order-lg-2" data-aos="fade-left">
+                    <div class="position-relative">
+                        <img src="assets/images/image12.png" alt="Philosophy" class="img-fluid" style="border-radius: 0 40% 0 40%;">
+
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-1" data-aos="fade-right">
+                    <span class="text-accent fw-bold text-uppercase tracking-wide">Our Philosophy</span>
+                    <h2 class="display-5 fw-bold mt-2 mb-4">Education that Transcends the Classroom</h2>
+                    <p class="fs-5 text-muted mb-4">We believe that learning is an active process. Our students don't just absorb information; they interact with it, question it, and apply it to real-world scenarios.</p>
+                    
+                    <div class="mt-5">
+                        <div class="d-flex mb-4 position-relative">
+                            <div class="position-relative z-index-1">
+                                <h4 class="fw-bold h5">Curiosity-Driven</h4>
+                                <p class="text-muted small">We spark questions before providing answers, ensuring students remain engaged and motivated.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-4 position-relative">
+                            <div class="position-relative z-index-1">
+                                <h4 class="fw-bold h5">Mastery-Based</h4>
+                                <p class="text-muted small">Students progress only when they have fully understood a concept, leaving no foundational gaps.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grade Journey (Editorial Cards) -->
+    <section class="section-padding" style="background-color: var(--bp-background);">
+        <div class="container">
+            <div class="text-center mb-5">
+                <div class="badge-premium mb-3">Curriculum</div>
+                <h2 class="display-5 fw-bold">Our Grade Journeys</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="editorial-card h-100 d-flex flex-column p-0 overflow-hidden" style="border-color: var(--bp-primary); border-radius: var(--bp-radius);">
+                        <img src="assets/images/Primary Years.png" alt="Primary Years" class="w-100" style="height: 240px; object-fit: cover;">
+                        <div class="p-4 p-lg-5 d-flex flex-column flex-grow-1 text-center align-items-center">
+                            <h3 class="fw-bold mb-3">Primary Years</h3>
+                            <p class="text-muted mb-4 flex-grow-1">Grades 1-5 focus on foundational literacy, numeracy, and fostering a love for learning through discovery.</p>
+                            <a href="subjects.html#primary" class="text-primary fw-bold text-decoration-none mt-auto">View Curriculum <i data-lucide="arrow-right" class="ms-1" style="width: 16px;"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="editorial-card h-100 d-flex flex-column p-0 overflow-hidden" style="border-color: var(--bp-secondary); border-radius: var(--bp-radius);">
+                        <img src="assets/images/Middle Years.png" alt="Middle Years" class="w-100" style="height: 240px; object-fit: cover;">
+                        <div class="p-4 p-lg-5 d-flex flex-column flex-grow-1 text-center align-items-center">
+                            <h3 class="fw-bold mb-3">Middle Years</h3>
+                            <p class="text-muted mb-4 flex-grow-1">Grades 6-8 introduce analytical thinking, specialized sciences, and advanced problem-solving methodologies.</p>
+                            <a href="subjects.html#middle" class="text-secondary fw-bold text-decoration-none mt-auto">View Curriculum <i data-lucide="arrow-right" class="ms-1" style="width: 16px;"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="editorial-card h-100 d-flex flex-column p-0 overflow-hidden" style="border-color: var(--bp-accent); border-radius: var(--bp-radius);">
+                        <img src="assets/images/High School2.png" alt="High School" class="w-100" style="height: 240px; object-fit: cover;">
+                        <div class="p-4 p-lg-5 d-flex flex-column flex-grow-1 text-center align-items-center">
+                            <h3 class="fw-bold mb-3">High School</h3>
+                            <p class="text-muted mb-4 flex-grow-1">Grades 9-12 emphasize subject mastery, critical analysis, and rigorous university preparation.</p>
+                            <a href="subjects.html#high" class="text-accent fw-bold text-decoration-none mt-auto">View Curriculum <i data-lucide="arrow-right" class="ms-1" style="width: 16px;"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tutor Spotlight -->
+    <section class="section-padding bg-white">
+        <div class="container">
+            <div class="row align-items-center mb-5">
+                <div class="col-md-8">
+                    <h2 class="display-5 fw-bold">Elite Educators.<br>Exceptional Results.</h2>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <a href="tutors.html" class="btn btn-outline-custom">View Faculty Directory</a>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4" data-aos="fade-up">
+                    <div class="position-relative overflow-hidden group h-100" style="border-radius: var(--bp-radius-lg);">
+                        <img src="assets/images/AP-Physics.png" alt="AP Physics & Calculus" class="img-fluid w-100 h-100" style="aspect-ratio: 3/4; object-fit: cover; transition: transform 0.7s;">
+                        <div class="position-absolute inset-0" style="background-color: rgba(0,0,0,0.5); inset: 0;"></div>
+                        <div class="position-absolute bottom-0 start-0 w-100 p-4 text-white z-index-2">
+                            <h4 class="fw-bold mb-1 text-white">Dr. Robert Chen</h4>
+                            <p class="text-white mb-3">AP Physics & Calculus</p>
+                            <a href="tutors.html" class="text-white text-decoration-none text-uppercase small tracking-wide fw-bold">View Profile <i data-lucide="arrow-right" style="width: 14px;"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="d-flex flex-column h-100" style="gap: 1.5rem;">
+                        <div class="d-flex flex-column flex-md-row gap-4" style="flex: 1 1 0; min-height: 0;">
+                            <div class="position-relative overflow-hidden group h-100" style="border-radius: var(--bp-radius-lg); flex: 1;">
+                                <img src="assets/images/English-Literature.png" alt="English Literature" class="img-fluid w-100 h-100" style="object-fit: cover; transition: transform 0.7s;">
+                                <div class="position-absolute inset-0" style="background-color: rgba(0,0,0,0.5); inset: 0;"></div>
+                                <div class="position-absolute bottom-0 start-0 w-100 p-4 text-white z-index-2">
+                                    <h4 class="fw-bold mb-1 text-white">Amanda Foster</h4>
+                                    <p class="text-white mb-0">English Literature</p>
+                                </div>
+                            </div>
+                            <div class="position-relative overflow-hidden group h-100" style="border-radius: var(--bp-radius-lg); flex: 1;">
+                                <img src="assets/images/Computer-Science2.png" alt="Computer Science" class="img-fluid w-100 h-100" style="object-fit: cover; transition: transform 0.7s;">
+                                <div class="position-absolute inset-0" style="background-color: rgba(0,0,0,0.5); inset: 0;"></div>
+                                <div class="position-absolute bottom-0 start-0 w-100 p-4 text-white z-index-2">
+                                    <h4 class="fw-bold mb-1 text-white">David Okafor</h4>
+                                    <p class="text-white mb-0">Computer Science</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="flex: 1 1 0; min-height: 0;">
+                            <div class="position-relative overflow-hidden group h-100" style="border-radius: var(--bp-radius-lg);">
+                                <img src="assets/images/image18.png" alt="Expert Sessions" class="img-fluid w-100 h-100" style="object-fit: cover; transition: transform 0.7s;">
+                                <div class="position-absolute inset-0" style="background-color: rgba(0,0,0,0.5); inset: 0;"></div>
+                                <div class="position-absolute inset-0 p-5 d-flex align-items-center z-index-2 text-white" style="inset: 0;">
+                                    <div>
+                                        <h3 class="fw-bold h2 mb-3 text-white">Join Our Expert Sessions</h3>
+                                        <p class="mb-4 text-white">Learn directly from industry veterans and academic scholars.</p>
+                                        <a href="batches.html" class="btn btn-light text-primary rounded-pill px-4">See Batch Timings</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Success Metrics (Interactive) -->
+    <section class="section-padding bg-dark text-white">
+        <div class="container text-center">
+            <h2 class="display-5 fw-bold mb-5 text-white">By the Numbers</h2>
+            
+            <div class="row g-5 justify-content-center pt-4">
+                <div class="col-lg-3 col-md-6">
+                    <h3 class="display-3 fw-bold text-accent mb-2"><span class="counter-val" data-target="95">0</span>%</h3>
+                    <p class="fs-5 text-white-50">Score Improvement</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h3 class="display-3 fw-bold text-secondary mb-2"><span class="counter-val" data-target="1200">0</span>+</h3>
+                    <p class="fs-5 text-white-50">Hours of Tutoring</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h3 class="display-3 fw-bold text-success mb-2"><span class="counter-val" data-target="300">0</span>+</h3>
+                    <p class="fs-5 text-white-50">Ivy League Admits</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer mt-5">
+        <div class="container">
+            <div class="row g-5 mb-5">
+                <div class="col-lg-4">
+                    <a class="navbar-brand mb-4" href="index.html" style="color: var(--bp-primary) !important;">
+                        <i data-lucide="graduation-cap" class="text-accent"></i>
+                        BrightPath
+                    </a>
+                    <p class="mb-4">Empowering students to achieve academic excellence through personalized tutoring and innovative learning methods.</p>
+                                        <div class="d-flex gap-3">
+                        <a href="#" class="btn btn-outline-custom rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                        </a>
+                        <a href="#" class="btn btn-outline-custom rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                        <a href="#" class="btn btn-outline-custom rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="footer-title">Quick Links</h5>
+                    <a href="about.html" class="footer-link">About Us</a>
+                    <a href="tutors.html" class="footer-link">Our Tutors</a>
+                    <a href="batches.html" class="footer-link">Batch Timings</a>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="footer-title">Programs</h5>
+                    <a href="subjects.html#primary" class="footer-link">Primary School</a>
+                    <a href="subjects.html#middle" class="footer-link">Middle School</a>
+                    <a href="subjects.html#high" class="footer-link">High School</a>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h5 class="footer-title">Contact Us</h5>
+                    <div class="d-flex mb-3 text-muted">
+                        <i data-lucide="map-pin" class="me-3 text-accent" style="flex-shrink: 0;"></i>
+                        <span>123 Education Boulevard,<br>Learning District, NY 10001</span>
+                    </div>
+                    <div class="d-flex mb-3 text-muted">
+                        <i data-lucide="phone" class="me-3 text-accent" style="flex-shrink: 0;"></i>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="d-flex text-muted">
+                        <i data-lucide="mail" class="me-3 text-accent" style="flex-shrink: 0;"></i>
+                        <span>hello@brightpath.edu</span>
+                    </div>
+                </div>
+            </div>
+            <div class="border-top pt-4 mt-4 text-center" style="border-color: var(--bp-border) !important;">
+                <p class="mb-0 text-muted">&copy; 2026 BrightPath Learning Center. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.8.0/countUp.umd.js"></script>
+    <script src="assets/js/main.js"></script>
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
+        <i data-lucide="arrow-up"></i>
+    </button>
+</body>
+</html>
+
+
+
+
+
+
