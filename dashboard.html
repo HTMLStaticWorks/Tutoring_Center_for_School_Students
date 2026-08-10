@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
+    <script>
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard | BrightPath</title>
@@ -27,15 +33,49 @@
             background: var(--bp-card-bg);
             border-inline-end: 1px solid var(--bp-border);
             position: fixed;
+            top: 0;
+            bottom: 0;
             height: 100vh;
-            overflow-y: auto;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
             z-index: 1040;
             transition: var(--bp-transition);
+        }
+
+        .sidebar .sidebar-nav {
+            flex: 1 1 0;
+            overflow-y: hidden;
+        }
+
+        .sidebar .sidebar-link {
+            padding: 0.55rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .sidebar small.text-muted {
+            margin-top: 0.75rem !important;
+            margin-bottom: 0.25rem !important;
+        }
+
+        @media (max-width: 991.98px) {
+            .dashboard-top-header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1030;
+                background: var(--bp-card-bg);
+                padding: 0.85rem 1rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                border-bottom: 1px solid var(--bp-border);
+                margin-bottom: 0;
+            }
         }
         
         .main-content {
             flex-grow: 1;
-            min-width: 0; /* Prevent flex child from overflowing */
+            min-width: 0;
             margin-inline-start: 280px;
             padding: 2rem;
             transition: var(--bp-transition);
@@ -54,6 +94,7 @@
             .main-content {
                 margin-inline-start: 0;
                 padding: 1rem;
+                padding-top: 7rem;
             }
         }
         
@@ -75,6 +116,22 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 768px) and (max-width: 1199.98px) {
+            .dashboard-card {
+                padding: 1rem;
+            }
+            .stat-icon {
+                width: 36px;
+                height: 36px;
+                border-radius: 8px;
+            }
+            .stat-icon i, .stat-icon svg {
+                width: 18px !important;
+                height: 18px !important;
+            }
         }
         
         .timeline-item {
@@ -107,6 +164,7 @@
             background: var(--bp-primary);
         }
     </style>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 </head>
 <body class="overflow-x-hidden">
 
@@ -122,7 +180,7 @@
                 <button class="btn btn-sm d-lg-none" id="closeSidebar"><i data-lucide="x"></i></button>
             </div>
             
-            <div class="p-3 flex-grow-1">
+            <div class="p-3 sidebar-nav">
                 <small class="text-muted fw-bold text-uppercase tracking-wide px-3 mb-2 d-block">Main Menu</small>
                 <a href="#" class="sidebar-link active" data-section="overview"><i data-lucide="layout-dashboard"></i> Overview</a>
                 <a href="#" class="sidebar-link" data-section="schedule"><i data-lucide="calendar"></i> Schedule</a>
@@ -130,7 +188,7 @@
                 <a href="#" class="sidebar-link" data-section="materials"><i data-lucide="book-open"></i> Study Materials</a>
                 
                 <small class="text-muted fw-bold text-uppercase tracking-wide px-3 mt-4 mb-2 d-block">Academics</small>
-                <a href="#" class="sidebar-link" data-section="tests"><i data-lucide="file-text"></i> Tests & Exams</a>
+                <a href="#" class="sidebar-link" data-section="tests"><i data-lucide="file-text"></i> Tests &amp; Exams</a>
                 <a href="#" class="sidebar-link" data-section="assignments"><i data-lucide="pen-tool"></i> Assignments</a>
                 <a href="#" class="sidebar-link" data-section="progress"><i data-lucide="bar-chart-2"></i> Progress</a>
                 
@@ -161,7 +219,7 @@
         <!-- Main Content -->
         <main class="main-content">
             <!-- Top Header -->
-            <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom border-secondary border-opacity-10">
+            <div class="dashboard-top-header d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom border-secondary border-opacity-10">
                 <div class="d-flex align-items-center gap-3">
                     <button class="btn btn-light d-lg-none" id="openSidebar"><i data-lucide="menu"></i></button>
                     <div>
@@ -273,32 +331,32 @@
                         </div>
                         
                         <div class="d-flex flex-column gap-3">
-                            <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-3 p-3 border rounded-3 border-secondary border-opacity-10">
-                                <div class="d-flex align-items-center gap-3 flex-grow-1 w-100">
+                            <div class="d-flex flex-column align-items-stretch flex-xl-row align-items-xl-center gap-3 p-3 border rounded-3 border-secondary border-opacity-10">
+                                <div class="d-flex align-items-center gap-3 flex-grow-1">
                                     <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-3 text-center flex-shrink-0" style="width: 80px;">
                                         <h5 class="fw-bold mb-0">4:00</h5>
                                         <small>PM</small>
                                     </div>
                                     <div class="flex-grow-1">
                                         <h6 class="fw-bold mb-1">AP Physics - Kinetics</h6>
-                                        <p class="text-muted small mb-0"><i data-lucide="user" style="width:14px"></i> Dr. Chen â€¢ <i data-lucide="video" style="width:14px"></i> Room 104 (Hybrid)</p>
+                                        <p class="text-muted small mb-0"><i data-lucide="user" style="width:14px"></i> Dr. Chen &bull; <i data-lucide="video" style="width:14px"></i> Room 104 (Hybrid)</p>
                                     </div>
                                 </div>
-                                <button class="btn btn-primary-custom btn-sm rounded-pill px-3 w-100 w-sm-auto flex-shrink-0">Join Link</button>
+                                <button class="btn btn-primary-custom btn-sm rounded-pill px-3 flex-shrink-0">Join Link</button>
                             </div>
                             
-                            <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-3 p-3 border rounded-3 border-secondary border-opacity-10">
-                                <div class="d-flex align-items-center gap-3 flex-grow-1 w-100">
+                            <div class="d-flex flex-column align-items-stretch flex-xl-row align-items-xl-center gap-3 p-3 border rounded-3 border-secondary border-opacity-10">
+                                <div class="d-flex align-items-center gap-3 flex-grow-1">
                                     <div class="bg-light text-muted p-3 rounded-3 text-center flex-shrink-0" style="width: 80px;">
                                         <h5 class="fw-bold mb-0">6:30</h5>
                                         <small>PM</small>
                                     </div>
                                     <div class="flex-grow-1">
                                         <h6 class="fw-bold mb-1">Advanced Mathematics - Calculus</h6>
-                                        <p class="text-muted small mb-0"><i data-lucide="user" style="width:14px"></i> Sarah Jenkins â€¢ <i data-lucide="map-pin" style="width:14px"></i> Main Campus</p>
+                                        <p class="text-muted small mb-0"><i data-lucide="user" style="width:14px"></i> Sarah Jenkins &bull; <i data-lucide="map-pin" style="width:14px"></i> Main Campus</p>
                                     </div>
                                 </div>
-                                <button class="btn btn-outline-custom btn-sm rounded-pill px-3 w-100 w-sm-auto flex-shrink-0" disabled>Upcoming</button>
+                                <button class="btn btn-outline-custom btn-sm rounded-pill px-3 flex-shrink-0" disabled>Upcoming</button>
                             </div>
                         </div>
                     </div>
@@ -312,20 +370,20 @@
                         <h5 class="fw-bold mb-4">Recent Materials</h5>
                         <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
                             <li class="d-flex align-items-center gap-3">
-                                <div class="bg-danger bg-opacity-10 text-danger p-2 rounded"><i data-lucide="file-text"></i></div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-0 fw-medium fs-6">Kinetics Formula Sheet.pdf</h6>
-                                    <small class="text-muted">Physics â€¢ 2.4 MB</small>
+                                <div class="bg-danger bg-opacity-10 text-danger p-2 rounded flex-shrink-0"><i data-lucide="file-text"></i></div>
+                                <div class="flex-grow-1" style="min-width:0;">
+                                    <h6 class="mb-0 fw-medium fs-6 text-truncate">Kinetics Formula Sheet.pdf</h6>
+                                    <small class="text-muted">Physics &bull; 2.4 MB</small>
                                 </div>
-                                <a href="#" class="text-primary"><i data-lucide="download" style="width: 18px;"></i></a>
+                                <a href="#" class="text-primary flex-shrink-0"><i data-lucide="download" style="width: 18px;"></i></a>
                             </li>
                             <li class="d-flex align-items-center gap-3">
-                                <div class="bg-primary bg-opacity-10 text-primary p-2 rounded"><i data-lucide="book"></i></div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-0 fw-medium fs-6">Calculus Ch. 4 Notes.docx</h6>
-                                    <small class="text-muted">Math â€¢ 1.1 MB</small>
+                                <div class="bg-primary bg-opacity-10 text-primary p-2 rounded flex-shrink-0"><i data-lucide="book"></i></div>
+                                <div class="flex-grow-1" style="min-width:0;">
+                                    <h6 class="mb-0 fw-medium fs-6 text-truncate">Calculus Ch. 4 Notes.docx</h6>
+                                    <small class="text-muted">Math &bull; 1.1 MB</small>
                                 </div>
-                                <a href="#" class="text-primary"><i data-lucide="download" style="width: 18px;"></i></a>
+                                <a href="#" class="text-primary flex-shrink-0"><i data-lucide="download" style="width: 18px;"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -363,7 +421,7 @@
             <div id="section-schedule" class="dashboard-section d-none">
                 <!-- Stats Row -->
                 <div class="row g-4 mb-4">
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="dashboard-card">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div>
@@ -375,7 +433,7 @@
                             <p class="text-muted small mb-0">Starts in 2 hours</p>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="dashboard-card">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div>
@@ -387,7 +445,7 @@
                             <p class="text-muted small mb-0">2 completed</p>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="dashboard-card">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div>
@@ -399,7 +457,7 @@
                             <p class="text-muted small mb-0">This Week</p>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="dashboard-card">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div>
@@ -477,7 +535,7 @@
             <div id="section-attendance" class="dashboard-section d-none">
                 <!-- Stats Row -->
                 <div class="row g-4 mb-4">
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="dashboard-card">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div>
@@ -491,7 +549,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="dashboard-card">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div>
@@ -503,7 +561,7 @@
                             <p class="text-muted small mb-0">Total Classes Attended</p>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="dashboard-card">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div>
@@ -515,7 +573,7 @@
                             <p class="text-muted small mb-0">Total Classes Missed</p>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="dashboard-card">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div>
@@ -615,7 +673,7 @@
             <div id="section-materials" class="dashboard-section d-none">
                 <!-- Stats Row -->
                 <div class="row g-4 mb-4">
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="dashboard-card">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div>
@@ -627,7 +685,7 @@
                             <p class="text-muted small mb-0">Across 6 subjects</p>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="dashboard-card">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div>
@@ -639,7 +697,7 @@
                             <p class="text-muted small mb-0">Added this week</p>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="dashboard-card">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div>
@@ -651,7 +709,7 @@
                             <p class="text-muted small mb-0">Out of 1GB limit</p>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="dashboard-card">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div>
@@ -710,25 +768,25 @@
                             <h5 class="fw-bold mb-4">Subject Folders</h5>
                             <div class="d-flex flex-column gap-3">
                                 <a href="#" class="d-flex align-items-center justify-content-between p-3 border rounded-3 border-secondary border-opacity-10 text-decoration-none text-dark hover-bg-light">
-                                    <div class="d-flex align-items-center gap-2">
-                                        <i data-lucide="folder" class="text-primary"></i>
-                                        <span class="fw-bold">Mathematics</span>
+                                    <div class="d-flex align-items-center gap-2" style="min-width: 0;">
+                                        <i data-lucide="folder" class="text-primary flex-shrink-0"></i>
+                                        <span class="fw-bold text-truncate">Mathematics</span>
                                     </div>
-                                    <span class="badge bg-secondary">15</span>
+                                    <span class="badge bg-secondary flex-shrink-0 ms-2">15</span>
                                 </a>
                                 <a href="#" class="d-flex align-items-center justify-content-between p-3 border rounded-3 border-secondary border-opacity-10 text-decoration-none text-dark hover-bg-light">
-                                    <div class="d-flex align-items-center gap-2">
-                                        <i data-lucide="folder" class="text-success"></i>
-                                        <span class="fw-bold">Science</span>
+                                    <div class="d-flex align-items-center gap-2" style="min-width: 0;">
+                                        <i data-lucide="folder" class="text-success flex-shrink-0"></i>
+                                        <span class="fw-bold text-truncate">Science</span>
                                     </div>
-                                    <span class="badge bg-secondary">22</span>
+                                    <span class="badge bg-secondary flex-shrink-0 ms-2">22</span>
                                 </a>
                                 <a href="#" class="d-flex align-items-center justify-content-between p-3 border rounded-3 border-secondary border-opacity-10 text-decoration-none text-dark hover-bg-light">
-                                    <div class="d-flex align-items-center gap-2">
-                                        <i data-lucide="folder" class="text-accent"></i>
-                                        <span class="fw-bold">English</span>
+                                    <div class="d-flex align-items-center gap-2" style="min-width: 0;">
+                                        <i data-lucide="folder" class="text-accent flex-shrink-0"></i>
+                                        <span class="fw-bold text-truncate">English</span>
                                     </div>
-                                    <span class="badge bg-secondary">8</span>
+                                    <span class="badge bg-secondary flex-shrink-0 ms-2">8</span>
                                 </a>
                             </div>
                         </div>
@@ -741,7 +799,7 @@
             <div id="section-tests" class="dashboard-section d-none">
                 <!-- Stats Row -->
                 <div class="row g-4 mb-4">
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="dashboard-card">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div>
@@ -753,7 +811,7 @@
                             <p class="text-muted small mb-0">In the next 14 days</p>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="dashboard-card">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div>
@@ -765,7 +823,7 @@
                             <p class="text-muted small mb-0">Top 15% of class</p>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="dashboard-card">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div>
@@ -777,7 +835,7 @@
                             <p class="text-muted small mb-0">AP Calculus Midterm</p>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="dashboard-card">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div>
@@ -865,7 +923,7 @@
             <div id="section-assignments" class="dashboard-section d-none">
                 <!-- Stats Row -->
                 <div class="row g-4 mb-4">
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="dashboard-card">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div>
@@ -877,7 +935,7 @@
                             <p class="text-muted small mb-0">Action Required</p>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="dashboard-card">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div>
@@ -889,7 +947,7 @@
                             <p class="text-muted small mb-0">This semester</p>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="dashboard-card">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div>
@@ -901,7 +959,7 @@
                             <p class="text-muted small mb-0">Submit immediately</p>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="dashboard-card">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div>
@@ -921,35 +979,35 @@
                         <div class="dashboard-card mb-4">
                             <h5 class="fw-bold mb-4">Active Assignments</h5>
                             <div class="d-flex flex-column gap-3">
-                                <div class="d-flex align-items-center gap-3 p-3 border rounded-3 border-danger border-opacity-25 bg-danger bg-opacity-10">
-                                    <div class="bg-danger text-white p-3 rounded-3 text-center" style="min-width: 80px;">
+                                <div class="d-flex flex-column align-items-stretch flex-xl-row align-items-xl-center gap-3 p-3 border rounded-3 border-danger border-opacity-25 bg-danger bg-opacity-10">
+                                    <div class="bg-danger text-white p-3 rounded-3 text-center flex-shrink-0" style="min-width: 80px;">
                                         <h5 class="fw-bold mb-0">Oct 9</h5>
                                     </div>
                                     <div class="flex-grow-1">
                                         <h6 class="fw-bold mb-1 text-danger">World History Essay (OVERDUE)</h6>
                                         <p class="text-muted small mb-0">Chapter 4 - The Renaissance</p>
                                     </div>
-                                    <button class="btn btn-danger btn-sm px-3">Submit Now</button>
+                                    <button class="btn btn-danger btn-sm px-3 flex-shrink-0">Submit Now</button>
                                 </div>
-                                <div class="d-flex align-items-center gap-3 p-3 border rounded-3 border-secondary border-opacity-10">
-                                    <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-3 text-center" style="min-width: 80px;">
+                                <div class="d-flex flex-column align-items-stretch flex-xl-row align-items-xl-center gap-3 p-3 border rounded-3 border-secondary border-opacity-10">
+                                    <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-3 text-center flex-shrink-0" style="min-width: 80px;">
                                         <h5 class="fw-bold mb-0">Oct 14</h5>
                                     </div>
                                     <div class="flex-grow-1">
                                         <h6 class="fw-bold mb-1">Physics Lab Report</h6>
                                         <p class="text-muted small mb-0">Experiment #3 - Thermodynamics</p>
                                     </div>
-                                    <button class="btn btn-outline-custom btn-sm px-3">Upload</button>
+                                    <button class="btn btn-outline-custom btn-sm px-3 flex-shrink-0">Upload</button>
                                 </div>
-                                <div class="d-flex align-items-center gap-3 p-3 border rounded-3 border-secondary border-opacity-10">
-                                    <div class="bg-accent bg-opacity-10 text-accent p-3 rounded-3 text-center" style="min-width: 80px;">
+                                <div class="d-flex flex-column align-items-stretch flex-xl-row align-items-xl-center gap-3 p-3 border rounded-3 border-secondary border-opacity-10">
+                                    <div class="bg-accent bg-opacity-10 text-accent p-3 rounded-3 text-center flex-shrink-0" style="min-width: 80px;">
                                         <h5 class="fw-bold mb-0">Oct 18</h5>
                                     </div>
                                     <div class="flex-grow-1">
                                         <h6 class="fw-bold mb-1">Calculus Worksheet 5</h6>
                                         <p class="text-muted small mb-0">Integration Techniques</p>
                                     </div>
-                                    <button class="btn btn-outline-custom btn-sm px-3">Upload</button>
+                                    <button class="btn btn-outline-custom btn-sm px-3 flex-shrink-0">Upload</button>
                                 </div>
                             </div>
                         </div>
@@ -982,7 +1040,7 @@
             <div id="section-progress" class="dashboard-section d-none">
                 <!-- Stats Row -->
                 <div class="row g-4 mb-4">
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="dashboard-card">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div>
@@ -996,7 +1054,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="dashboard-card">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div>
@@ -1008,7 +1066,7 @@
                             <p class="text-muted small mb-0">Out of 60 required</p>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="dashboard-card">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div>
@@ -1020,7 +1078,7 @@
                             <p class="text-muted small mb-0">Excellent standing</p>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="dashboard-card">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div>
@@ -1234,7 +1292,9 @@
                                         <input type="text" class="form-control form-control-premium" value="+1 234 567 8900">
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-premium btn-primary-custom">Save Changes</button>
+                                <div class="text-center mt-3">
+                                    <button type="button" class="btn btn-premium btn-primary-custom px-5">Save Changes</button>
+                                </div>
                             </form>
 
                             <hr class="my-4 border-secondary border-opacity-10">
@@ -1271,6 +1331,7 @@
     </button>
 </body>
 </html>
+
 
 
 

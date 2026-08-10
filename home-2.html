@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
+    <script>
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BrightPath Learning | Home 2</title>
@@ -41,7 +47,35 @@
             font-weight: 300;
             max-width: 600px;
         }
+
+        .btn-discover:hover,
+        .btn-discover:focus {
+            background: rgba(255,255,255,0.15) !important;
+            border-color: #fff !important;
+            color: #fff !important;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255,255,255,0.2);
+        }
+
+        .journey-link {
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
         
+        .journey-link i {
+            transition: transform 0.3s ease;
+        }
+        
+        .journey-link:hover {
+            opacity: 0.8;
+            text-decoration: underline !important;
+        }
+        
+        .journey-link:hover i {
+            transform: translateX(5px);
+        }
+
         .large-number {
             font-size: 8rem;
             font-weight: 800;
@@ -86,6 +120,7 @@
             100% { transform: translateX(-50%); }
         }
     </style>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 </head>
 <body>
 
@@ -96,18 +131,19 @@
                 <i data-lucide="graduation-cap" class="text-accent"></i>
                 <span class="text-primary fw-bold">BrightPath</span>
             </a>
-            
+
             <div class="d-flex align-items-center order-xl-3 gap-3">
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNav">
                     <i data-lucide="menu"></i>
                 </button>
             </div>
-            
+
             <div class="collapse navbar-collapse order-xl-2" id="navbarNav">
                 <ul class="navbar-nav mx-auto text-center">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle-custom active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle-custom active" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             Home <i data-lucide="chevron-down" class="dropdown-icon ms-1"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-custom">
@@ -115,15 +151,41 @@
                             <li><a class="dropdown-item dropdown-item-custom active" href="home-2.html">Home 2</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="service.html">Service</a></li>
-                    <li class="nav-item"><a class="nav-link" href="subjects.html">Subjects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="tutors.html">Tutors</a></li>
-                    <li class="nav-item"><a class="nav-link" href="batches.html">Batches</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="service.html">Service</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="subjects.html">Subjects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tutors.html">Tutors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="batches.html">Batches</a>
+                    </li>
 
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
-                </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                    </li>
+                    </ul>
+                <div class="d-flex flex-column flex-xl-row align-items-center gap-3 mt-3 mt-xl-0 ms-xl-4 pb-3 pb-xl-0">
+                    <div class="d-flex justify-content-center gap-3 w-100 w-xl-auto">
+                        <button class="theme-toggle rtl-toggle" aria-label="Toggle RTL">
+                            <i data-lucide="arrow-right-left"></i>
+                        </button>
+                        <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                            <i data-lucide="sun"></i>
+                        </button>
+                    </div>
+                    <a href="login.html" class="btn btn-primary-custom w-100 w-xl-auto rounded-pill px-3 mb-2 mb-xl-0">Login</a>
+                    <a href="admissions.html" class="btn btn-accent w-100 w-xl-auto rounded-pill px-4 text-nowrap">Free Assessment</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -141,14 +203,15 @@
                     <p class="editorial-subtitle mb-5 mx-auto">We Help Them Unlock It through immersive learning experiences and elite mentorship.</p>
                     <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center gap-3 gap-sm-4">
                         <a href="subjects.html" class="btn btn-primary-custom btn-premium btn-lg w-100 w-sm-auto" style="max-width: 260px;">Explore Programs</a>
-                        <a href="#philosophy" class="text-white text-decoration-none fw-medium d-flex justify-content-center align-items-center gap-2 border border-white rounded-pill px-4 py-2 w-100 w-sm-auto" style="max-width: 260px; height: 48px;">
-                            <span><i data-lucide="arrow-down"></i></span> Discover More
+                        <a href="#philosophy" class="btn btn-premium btn-lg btn-discover w-100 w-sm-auto d-flex align-items-center justify-content-center gap-2"
+                            style="max-width: 260px; border: 2px solid rgba(255,255,255,0.7); color: #fff; background: transparent; border-radius: 50px; transition: all 0.3s ease;">
+                            <i data-lucide="arrow-down"></i> Discover More
                         </a>
                     </div>
                 </div>
             </div>
             
-            <div class="row mt-5 pt-5 d-none d-lg-flex justify-content-center text-start">
+            <div class="row mt-4 mt-lg-5 pt-4 pt-lg-5 d-flex flex-column flex-md-row justify-content-center align-items-start align-items-md-center ps-4 ps-md-0 gap-4 gap-md-0">
                 <div class="col-auto px-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="border-start border-2 border-primary ps-3">
                         <h4 class="text-white fw-bold h3 mb-1">98%</h4>
@@ -168,7 +231,7 @@
     <!-- Marquee -->
     <div class="marquee-container">
         <div class="marquee-content">
-            EMPOWERING MINDS â€¢ FOSTERING CREATIVITY â€¢ ACHIEVING EXCELLENCE â€¢ BUILDING FUTURES â€¢ EMPOWERING MINDS â€¢ FOSTERING CREATIVITY â€¢ ACHIEVING EXCELLENCE â€¢ BUILDING FUTURES â€¢ 
+            EMPOWERING MINDS Ã¢â‚¬Â¢ FOSTERING CREATIVITY Ã¢â‚¬Â¢ ACHIEVING EXCELLENCE Ã¢â‚¬Â¢ BUILDING FUTURES Ã¢â‚¬Â¢ EMPOWERING MINDS Ã¢â‚¬Â¢ FOSTERING CREATIVITY Ã¢â‚¬Â¢ ACHIEVING EXCELLENCE Ã¢â‚¬Â¢ BUILDING FUTURES Ã¢â‚¬Â¢ 
         </div>
     </div>
 
@@ -220,7 +283,7 @@
                         <div class="p-4 p-lg-5 d-flex flex-column flex-grow-1 text-center align-items-center">
                             <h3 class="fw-bold mb-3">Primary Years</h3>
                             <p class="text-muted mb-4 flex-grow-1">Grades 1-5 focus on foundational literacy, numeracy, and fostering a love for learning through discovery.</p>
-                            <a href="subjects.html#primary" class="text-primary fw-bold text-decoration-none mt-auto">View Curriculum <i data-lucide="arrow-right" class="ms-1" style="width: 16px;"></i></a>
+                            <a href="subjects.html#primary" class="journey-link text-primary fw-bold text-decoration-none mt-auto">View Curriculum <i data-lucide="arrow-right" class="ms-1" style="width: 16px;"></i></a>
                         </div>
                     </div>
                 </div>
@@ -230,7 +293,7 @@
                         <div class="p-4 p-lg-5 d-flex flex-column flex-grow-1 text-center align-items-center">
                             <h3 class="fw-bold mb-3">Middle Years</h3>
                             <p class="text-muted mb-4 flex-grow-1">Grades 6-8 introduce analytical thinking, specialized sciences, and advanced problem-solving methodologies.</p>
-                            <a href="subjects.html#middle" class="text-secondary fw-bold text-decoration-none mt-auto">View Curriculum <i data-lucide="arrow-right" class="ms-1" style="width: 16px;"></i></a>
+                            <a href="subjects.html#middle" class="journey-link text-secondary fw-bold text-decoration-none mt-auto">View Curriculum <i data-lucide="arrow-right" class="ms-1" style="width: 16px;"></i></a>
                         </div>
                     </div>
                 </div>
@@ -240,7 +303,7 @@
                         <div class="p-4 p-lg-5 d-flex flex-column flex-grow-1 text-center align-items-center">
                             <h3 class="fw-bold mb-3">High School</h3>
                             <p class="text-muted mb-4 flex-grow-1">Grades 9-12 emphasize subject mastery, critical analysis, and rigorous university preparation.</p>
-                            <a href="subjects.html#high" class="text-accent fw-bold text-decoration-none mt-auto">View Curriculum <i data-lucide="arrow-right" class="ms-1" style="width: 16px;"></i></a>
+                            <a href="subjects.html#high" class="journey-link text-accent fw-bold text-decoration-none mt-auto">View Curriculum <i data-lucide="arrow-right" class="ms-1" style="width: 16px;"></i></a>
                         </div>
                     </div>
                 </div>
@@ -274,28 +337,33 @@
                 </div>
                 <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
                     <div class="d-flex flex-column h-100" style="gap: 1.5rem;">
-                        <div class="d-flex flex-column flex-md-row gap-4" style="flex: 1 1 0; min-height: 0;">
-                            <div class="position-relative overflow-hidden group h-100" style="border-radius: var(--bp-radius-lg); flex: 1;">
-                                <img src="assets/images/English-Literature.png" alt="English Literature" class="img-fluid w-100 h-100" style="object-fit: cover; transition: transform 0.7s;">
-                                <div class="position-absolute inset-0" style="background-color: rgba(0,0,0,0.5); inset: 0;"></div>
-                                <div class="position-absolute bottom-0 start-0 w-100 p-4 text-white z-index-2">
-                                    <h4 class="fw-bold mb-1 text-white">Amanda Foster</h4>
-                                    <p class="text-white mb-0">English Literature</p>
+                        <div class="row g-4" style="flex: 1 1 auto; min-height: 250px;">
+                            <div class="col-md-6 d-flex">
+                                <div class="position-relative overflow-hidden group w-100 h-100" style="border-radius: var(--bp-radius-lg); min-height: 250px;">
+                                    <img src="assets/images/English-Literature.png" alt="English Literature" class="img-fluid w-100 h-100" style="object-fit: cover; transition: transform 0.7s;">
+                                    <div class="position-absolute inset-0" style="background-color: rgba(0,0,0,0.5); inset: 0;"></div>
+                                    <div class="position-absolute bottom-0 start-0 w-100 p-4 text-white z-index-2">
+                                        <h4 class="fw-bold mb-1 text-white">Amanda Foster</h4>
+                                        <p class="text-white mb-0">English Literature</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="position-relative overflow-hidden group h-100" style="border-radius: var(--bp-radius-lg); flex: 1;">
-                                <img src="assets/images/Computer-Science2.png" alt="Computer Science" class="img-fluid w-100 h-100" style="object-fit: cover; transition: transform 0.7s;">
-                                <div class="position-absolute inset-0" style="background-color: rgba(0,0,0,0.5); inset: 0;"></div>
-                                <div class="position-absolute bottom-0 start-0 w-100 p-4 text-white z-index-2">
-                                    <h4 class="fw-bold mb-1 text-white">David Okafor</h4>
-                                    <p class="text-white mb-0">Computer Science</p>
+                            <div class="col-md-6 d-flex">
+                                <div class="position-relative overflow-hidden group w-100 h-100" style="border-radius: var(--bp-radius-lg); min-height: 250px;">
+                                    <img src="assets/images/Computer-Science2.png" alt="Computer Science" class="img-fluid w-100 h-100" style="object-fit: cover; transition: transform 0.7s;">
+                                    <div class="position-absolute inset-0" style="background-color: rgba(0,0,0,0.5); inset: 0;"></div>
+                                    <div class="position-absolute bottom-0 start-0 w-100 p-4 text-white z-index-2">
+                                        <h4 class="fw-bold mb-1 text-white">David Okafor</h4>
+                                        <p class="text-white mb-0">Computer Science</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div style="flex: 1 1 0; min-height: 0;">
-                            <div class="position-relative overflow-hidden group h-100" style="border-radius: var(--bp-radius-lg);">
-                                <img src="assets/images/image18.png" alt="Expert Sessions" class="img-fluid w-100 h-100" style="object-fit: cover; transition: transform 0.7s;">
-                                <div class="position-absolute inset-0" style="background-color: rgba(0,0,0,0.5); inset: 0;"></div>
+                        <div class="row mt-0" style="flex: 1 1 auto; min-height: 250px;">
+                            <div class="col-12 d-flex">
+                                <div class="position-relative overflow-hidden group w-100 h-100" style="border-radius: var(--bp-radius-lg); min-height: 250px;">
+                                    <img src="assets/images/image18.png" alt="Expert Sessions" class="img-fluid w-100 h-100" style="object-fit: cover; transition: transform 0.7s;">
+                                    <div class="position-absolute inset-0" style="background-color: rgba(0,0,0,0.5); inset: 0;"></div>
                                 <div class="position-absolute inset-0 p-5 d-flex align-items-center z-index-2 text-white" style="inset: 0;">
                                     <div>
                                         <h3 class="fw-bold h2 mb-3 text-white">Join Our Expert Sessions</h3>
@@ -333,7 +401,7 @@
         </div>
     </section>
     <!-- Footer -->
-    <footer class="footer mt-5">
+    <footer class="footer">
         <div class="container">
             <div class="row g-5 mb-5">
                 <div class="col-lg-4">
@@ -401,6 +469,8 @@
     </button>
 </body>
 </html>
+
+
 
 
 

@@ -1,6 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
+    <script>
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Classes & Batch Timings | BrightPath Learning Center</title>
@@ -44,6 +50,7 @@
             border-color: var(--bp-primary);
         }
     </style>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 </head>
 <body>
 
@@ -54,18 +61,19 @@
                 <i data-lucide="graduation-cap" class="text-accent"></i>
                 <span class="text-primary fw-bold">BrightPath</span>
             </a>
-            
+
             <div class="d-flex align-items-center order-xl-3 gap-3">
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNav">
                     <i data-lucide="menu"></i>
                 </button>
             </div>
-            
+
             <div class="collapse navbar-collapse order-xl-2" id="navbarNav">
                 <ul class="navbar-nav mx-auto text-center">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle-custom" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle-custom" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             Home <i data-lucide="chevron-down" class="dropdown-icon ms-1"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-custom">
@@ -73,15 +81,41 @@
                             <li><a class="dropdown-item dropdown-item-custom" href="home-2.html">Home 2</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="service.html">Service</a></li>
-                    <li class="nav-item"><a class="nav-link" href="subjects.html">Subjects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="tutors.html">Tutors</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="batches.html">Batches</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="service.html">Service</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="subjects.html">Subjects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tutors.html">Tutors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="batches.html">Batches</a>
+                    </li>
 
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
-                </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                    </li>
+                    </ul>
+                <div class="d-flex flex-column flex-xl-row align-items-center gap-3 mt-3 mt-xl-0 ms-xl-4 pb-3 pb-xl-0">
+                    <div class="d-flex justify-content-center gap-3 w-100 w-xl-auto">
+                        <button class="theme-toggle rtl-toggle" aria-label="Toggle RTL">
+                            <i data-lucide="arrow-right-left"></i>
+                        </button>
+                        <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                            <i data-lucide="sun"></i>
+                        </button>
+                    </div>
+                    <a href="login.html" class="btn btn-primary-custom w-100 w-xl-auto rounded-pill px-3 mb-2 mb-xl-0">Login</a>
+                    <a href="admissions.html" class="btn btn-accent w-100 w-xl-auto rounded-pill px-4 text-nowrap">Free Assessment</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -100,7 +134,7 @@
     </header>
 
     <!-- Interactive Schedule Section -->
-    <section class="section-padding pt-0">
+    <section class="section-padding pt-4">
         <div class="container">
             <div class="row g-4">
                 
@@ -327,7 +361,7 @@
         </div>
     </section>
     <!-- Footer -->
-    <footer class="footer mt-5">
+    <footer class="footer">
         <div class="container">
             <div class="row g-5 mb-5">
                 <div class="col-lg-4">
@@ -393,6 +427,8 @@
     </button>
 </body>
 </html>
+
+
 
 
 

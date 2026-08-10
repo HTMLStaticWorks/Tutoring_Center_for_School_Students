@@ -1,6 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
+    <script>
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Tutors | BrightPath Learning Center</title>
@@ -36,6 +42,7 @@
             aspect-ratio: 1/1;
         }
     </style>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 </head>
 <body>
 
@@ -46,18 +53,19 @@
                 <i data-lucide="graduation-cap" class="text-accent"></i>
                 <span class="text-primary fw-bold">BrightPath</span>
             </a>
-            
+
             <div class="d-flex align-items-center order-xl-3 gap-3">
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNav">
                     <i data-lucide="menu"></i>
                 </button>
             </div>
-            
+
             <div class="collapse navbar-collapse order-xl-2" id="navbarNav">
                 <ul class="navbar-nav mx-auto text-center">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle-custom" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle-custom" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             Home <i data-lucide="chevron-down" class="dropdown-icon ms-1"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-custom">
@@ -65,15 +73,41 @@
                             <li><a class="dropdown-item dropdown-item-custom" href="home-2.html">Home 2</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="service.html">Service</a></li>
-                    <li class="nav-item"><a class="nav-link" href="subjects.html">Subjects</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="tutors.html">Tutors</a></li>
-                    <li class="nav-item"><a class="nav-link" href="batches.html">Batches</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="service.html">Service</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="subjects.html">Subjects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="tutors.html">Tutors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="batches.html">Batches</a>
+                    </li>
 
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
-                </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                    </li>
+                    </ul>
+                <div class="d-flex flex-column flex-xl-row align-items-center gap-3 mt-3 mt-xl-0 ms-xl-4 pb-3 pb-xl-0">
+                    <div class="d-flex justify-content-center gap-3 w-100 w-xl-auto">
+                        <button class="theme-toggle rtl-toggle" aria-label="Toggle RTL">
+                            <i data-lucide="arrow-right-left"></i>
+                        </button>
+                        <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                            <i data-lucide="sun"></i>
+                        </button>
+                    </div>
+                    <a href="login.html" class="btn btn-primary-custom w-100 w-xl-auto rounded-pill px-3 mb-2 mb-xl-0">Login</a>
+                    <a href="admissions.html" class="btn btn-accent w-100 w-xl-auto rounded-pill px-4 text-nowrap">Free Assessment</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -92,12 +126,12 @@
     </header>
 
     <!-- Tutors Directory -->
-    <section class="section-padding pt-0">
+    <section class="section-padding pt-4">
         <div class="container">
             <div class="row g-4 justify-content-center">
                 
                 <!-- Tutor 1 -->
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="0">
+                <div class="col-xl-3 col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="0">
                     <div class="premium-card tutor-card h-100 text-center">
                         <div class="mx-auto mb-4" style="width: 140px; height: 140px; border-radius: 50%; overflow: hidden;">
                             <img src="assets/images/Dr. Sarah Jenkins2.png" alt="Dr. Sarah Jenkins" class="img-fluid w-100 h-100 object-fit-cover">
@@ -110,7 +144,7 @@
                 </div>
 
                 <!-- Tutor 2 -->
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-xl-3 col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="premium-card tutor-card h-100 text-center">
                         <div class="mx-auto mb-4" style="width: 140px; height: 140px; border-radius: 50%; overflow: hidden;">
                             <img src="assets/images/Mark Thompson2.png" alt="Mark Thompson" class="img-fluid w-100 h-100 object-fit-cover">
@@ -123,7 +157,7 @@
                 </div>
 
                 <!-- Tutor 3 -->
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-xl-3 col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="premium-card tutor-card h-100 text-center">
                         <div class="mx-auto mb-4" style="width: 140px; height: 140px; border-radius: 50%; overflow: hidden;">
                             <img src="assets/images/Elena Rodriguez2.png" alt="Elena Rodriguez" class="img-fluid w-100 h-100 object-fit-cover">
@@ -136,7 +170,7 @@
                 </div>
                 
                 <!-- Tutor 4 -->
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="col-xl-3 col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="premium-card tutor-card h-100 text-center">
                         <div class="mx-auto mb-4" style="width: 140px; height: 140px; border-radius: 50%; overflow: hidden;">
                             <img src="assets/images/David Okafor.png" alt="David Okafor" class="img-fluid w-100 h-100 object-fit-cover">
@@ -316,7 +350,7 @@
     
     <!-- Modals 3 and 4 follow the same pattern... -->
     <!-- Footer -->
-    <footer class="footer mt-5">
+    <footer class="footer">
         <div class="container">
             <div class="row g-5 mb-5">
                 <div class="col-lg-4">
@@ -382,6 +416,8 @@
     </button>
 </body>
 </html>
+
+
 
 
 

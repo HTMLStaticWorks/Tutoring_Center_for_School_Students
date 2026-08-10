@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
+    <script>
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Login | BrightPath Learning Center</title>
@@ -57,7 +63,15 @@
             right: auto;
             left: 1.5rem;
         }
+        
+        .hover-underline {
+            transition: text-decoration 0.2s ease-in-out;
+        }
+        .hover-underline:hover {
+            text-decoration: underline !important;
+        }
     </style>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 </head>
 <body>
 
@@ -110,14 +124,30 @@
                             <input type="checkbox" class="form-check-input" id="rememberMe">
                             <label class="form-check-label text-muted small text-nowrap" for="rememberMe">Remember me</label>
                         </div>
-                        <a href="#" class="small text-primary text-decoration-none fw-medium text-nowrap">Forgot Password?</a>
+                        <a href="#" class="small text-primary text-decoration-none fw-medium text-nowrap hover-underline">Forgot Password?</a>
                     </div>
                 </div>
                 
                 <button type="submit" class="btn btn-primary-custom btn-premium w-100 mb-4 mt-2">Log In to Dashboard <i data-lucide="arrow-right" class="ms-2" style="width: 16px;"></i></button>
                 
+                <div class="position-relative my-4">
+                    <hr class="border-secondary border-opacity-10">
+                    <span class="position-absolute top-50 start-50 translate-middle px-3 small text-muted" style="background-color: var(--bp-card-bg);">or continue with</span>
+                </div>
+                
+                <div class="d-flex gap-3 mb-4">
+                    <button type="button" class="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center gap-2">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google" style="width: 20px;">
+                        Google
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center gap-2">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg" alt="Apple" style="width: 20px;">
+                        Apple
+                    </button>
+                </div>
+                
                 <div class="text-center">
-                    <p class="text-muted small mb-0">Don't have an account? <a href="register.html" class="fw-bold text-primary text-decoration-none">Register here</a></p>
+                    <p class="text-muted small mb-0">Don't have an account? <a href="register.html" class="fw-bold text-primary text-decoration-none hover-underline">Register here</a></p>
                 </div>
             </form>
         </div>
@@ -146,6 +176,7 @@
     </button>
 </body>
 </html>
+
 
 
 

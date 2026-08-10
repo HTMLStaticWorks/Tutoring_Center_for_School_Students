@@ -1,6 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
+    <script>
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | BrightPath Learning Center</title>
@@ -16,6 +22,7 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 </head>
 <body>
 
@@ -26,18 +33,19 @@
                 <i data-lucide="graduation-cap" class="text-accent"></i>
                 <span class="text-primary fw-bold">BrightPath</span>
             </a>
-            
+
             <div class="d-flex align-items-center order-xl-3 gap-3">
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNav">
                     <i data-lucide="menu"></i>
                 </button>
             </div>
-            
+
             <div class="collapse navbar-collapse order-xl-2" id="navbarNav">
                 <ul class="navbar-nav mx-auto text-center">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle-custom" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle-custom" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             Home <i data-lucide="chevron-down" class="dropdown-icon ms-1"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-custom">
@@ -45,15 +53,41 @@
                             <li><a class="dropdown-item dropdown-item-custom" href="home-2.html">Home 2</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="service.html">Service</a></li>
-                    <li class="nav-item"><a class="nav-link" href="subjects.html">Subjects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="tutors.html">Tutors</a></li>
-                    <li class="nav-item"><a class="nav-link" href="batches.html">Batches</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="service.html">Service</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="subjects.html">Subjects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tutors.html">Tutors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="batches.html">Batches</a>
+                    </li>
 
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
-                </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                    </li>
+                    </ul>
+                <div class="d-flex flex-column flex-xl-row align-items-center gap-3 mt-3 mt-xl-0 ms-xl-4 pb-3 pb-xl-0">
+                    <div class="d-flex justify-content-center gap-3 w-100 w-xl-auto">
+                        <button class="theme-toggle rtl-toggle" aria-label="Toggle RTL">
+                            <i data-lucide="arrow-right-left"></i>
+                        </button>
+                        <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                            <i data-lucide="sun"></i>
+                        </button>
+                    </div>
+                    <a href="login.html" class="btn btn-primary-custom w-100 w-xl-auto rounded-pill px-3 mb-2 mb-xl-0">Login</a>
+                    <a href="admissions.html" class="btn btn-accent w-100 w-xl-auto rounded-pill px-4 text-nowrap">Free Assessment</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -78,15 +112,15 @@
                 <div class="col-lg-6" data-aos="fade-right">
                     <div class="position-relative">
                         <img src="assets/images/image30.png" alt="Our Story" class="img-fluid rounded-4 shadow-lg">
-                        <div class="position-absolute bottom-0 end-0 translate-middle-y me-n4 d-none d-md-block">
-                            <div class="bg-primary text-white p-4 rounded-4 shadow-lg text-center" style="width: 150px;">
+                        <div class="position-absolute bottom-0 end-0 translate-middle-y me-md-n4 story-rating-card">
+                            <div class="bg-primary text-white p-4 rounded-4 shadow-lg text-center mx-auto" style="width: 150px;">
                                 <h3 class="fw-bold mb-0">Est.</h3>
                                 <h2 class="display-6 fw-bold mb-0">2010</h2>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6" data-aos="fade-left">
+                <div class="col-lg-6 text-center text-lg-start mt-5 mt-lg-0" data-aos="fade-left">
                     <h2 class="section-title">Our Story</h2>
                     <p class="text-muted mb-4">BrightPath began in 2010 with a single classroom and a powerful vision: to provide a learning environment that didn't just teach for tests, but taught for life.</p>
                     <p class="text-muted mb-4">Our founders, a group of experienced educators and child psychologists, recognized a gap in traditional schooling. They noticed that many bright students were falling behind simply because the standardized teaching methods didn't align with their unique learning styles.</p>
@@ -246,7 +280,7 @@
         </div>
     </section>
     <!-- Footer -->
-    <footer class="footer mt-5">
+    <footer class="footer">
         <div class="container">
             <div class="row g-5 mb-5">
                 <div class="col-lg-4">
@@ -313,6 +347,8 @@
     </button>
 </body>
 </html>
+
+
 
 
 
