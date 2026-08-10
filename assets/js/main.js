@@ -89,7 +89,7 @@ function updateDropdownIconColors(theme) {
   // Small delay to let Lucide finish rendering SVGs
   setTimeout(() => {
     const color = (theme === 'dark') ? '#F8FAFC' : '';
-    document.querySelectorAll('.dropdown-icon svg').forEach(svg => {
+    document.querySelectorAll('svg.dropdown-icon').forEach(svg => {
       svg.style.color = color;
       svg.style.stroke = color;
       svg.querySelectorAll('polyline, path, line').forEach(el => {

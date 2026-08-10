@@ -893,17 +893,62 @@ a:hover {
 /* =============================================
    Dark Mode: dropdown chevron icon visibility
    ============================================= */
-[data-theme="dark"] .dropdown-icon {
-  color: var(--bp-text) !important;
-}
-
-[data-theme="dark"] .dropdown-icon svg {
+[data-theme="dark"] svg.dropdown-icon {
   color: var(--bp-text) !important;
   stroke: var(--bp-text) !important;
 }
 
-[data-theme="dark"] .dropdown-icon svg polyline,
-[data-theme="dark"] .dropdown-icon svg path,
-[data-theme="dark"] .dropdown-icon svg line {
+[data-theme="dark"] svg.dropdown-icon polyline,
+[data-theme="dark"] svg.dropdown-icon path,
+[data-theme="dark"] svg.dropdown-icon line {
+  stroke: var(--bp-text) !important;
+}
+
+/* =============================================
+   Dark Mode: accordion arrow contrast fix
+   ============================================= */
+[data-theme="dark"] .accordion-button::after {
+  filter: invert(1) brightness(200%) grayscale(100%);
+}
+
+/* =============================================
+   Dark Mode: accordion item background and text
+   ============================================= */
+[data-theme="dark"] .accordion-item {
+  background-color: transparent !important;
+  border-color: var(--bp-border) !important;
+}
+
+[data-theme="dark"] .accordion-button {
+  color: var(--bp-text) !important;
+  background-color: transparent !important;
+}
+
+[data-theme="dark"] .accordion-button:not(.collapsed) {
+  color: var(--bp-primary) !important;
+  background-color: rgba(59, 130, 246, 0.05) !important;
+}
+
+[data-theme="dark"] .accordion-body {
+  color: var(--bp-muted) !important;
+}
+
+/* =============================================
+   Dark Mode: Form Controls and Search Boxes
+   ============================================= */
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .input-group-text {
+  color: var(--bp-text) !important;
+  background-color: var(--bp-card-bg) !important;
+  border-color: var(--bp-border) !important;
+}
+
+[data-theme="dark"] .form-control::placeholder {
+  color: var(--bp-muted) !important;
+  opacity: 1;
+}
+
+[data-theme="dark"] .input-group-text svg {
+  color: var(--bp-text) !important;
   stroke: var(--bp-text) !important;
 }

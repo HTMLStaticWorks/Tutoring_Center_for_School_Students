@@ -32,11 +32,11 @@
             flex-shrink: 0;
             background: var(--bp-card-bg);
             border-inline-end: 1px solid var(--bp-border);
-            position: fixed;
+            position: sticky;
+            inset-inline-start: 0;
             top: 0;
-            bottom: 0;
             height: 100vh;
-            overflow: hidden;
+            overflow-y: auto;
             display: flex;
             flex-direction: column;
             z-index: 1040;
@@ -58,7 +58,7 @@
             margin-bottom: 0.25rem !important;
         }
 
-        @media (max-width: 991.98px) {
+        @media (max-width: 1024px) {
             .dashboard-top-header {
                 position: fixed;
                 top: 0;
@@ -83,13 +83,17 @@
         .main-content {
             flex-grow: 1;
             min-width: 0;
-            margin-inline-start: 280px;
-            padding: 2rem;
+            margin-inline-start: 0;
+            padding: 1.5rem;
             transition: var(--bp-transition);
         }
         
-        @media (max-width: 991.98px) {
+        @media (max-width: 1024px) {
+            #openSidebar, #closeSidebar {
+                display: block !important;
+            }
             .sidebar {
+                position: fixed;
                 transform: translateX(-100%);
             }
             [dir="rtl"] .sidebar {
@@ -99,7 +103,6 @@
                 transform: translateX(0);
             }
             .main-content {
-                margin-inline-start: 0;
                 padding: 1rem;
                 padding-top: 7rem;
             }
@@ -363,7 +366,7 @@
                                         <p class="text-muted small mb-0"><i data-lucide="user" style="width:14px"></i> Sarah Jenkins &bull; <i data-lucide="map-pin" style="width:14px"></i> Main Campus</p>
                                     </div>
                                 </div>
-                                <button class="btn btn-outline-custom btn-sm rounded-pill px-3 flex-shrink-0" disabled>Upcoming</button>
+                                <button class="btn btn-outline-custom btn-sm rounded-pill px-3 flex-shrink-0">Upcoming</button>
                             </div>
                         </div>
                     </div>
