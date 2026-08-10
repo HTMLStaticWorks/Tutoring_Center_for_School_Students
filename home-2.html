@@ -31,6 +31,7 @@
             position: relative;
             display: flex;
             align-items: center;
+            padding-top: 80px;
         }
         
         .editorial-title {
@@ -73,6 +74,43 @@
         }
         
         .journey-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Elite Educators - View Profile hover */
+        .tutor-profile-link {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s ease, letter-spacing 0.3s ease;
+        }
+
+        .tutor-profile-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #fff;
+            transition: width 0.3s ease;
+        }
+
+        .tutor-profile-link:hover::after {
+            width: 100%;
+        }
+
+        .tutor-profile-link:hover {
+            color: #fff !important;
+            letter-spacing: 0.05em;
+        }
+
+        .tutor-profile-link i {
+            transition: transform 0.3s ease;
+        }
+
+        .tutor-profile-link:hover i {
             transform: translateX(5px);
         }
 
@@ -245,19 +283,19 @@
 
                     </div>
                 </div>
-                <div class="col-lg-6 order-lg-1" data-aos="fade-right">
+                <div class="col-lg-6 order-lg-1 text-center text-lg-start" data-aos="fade-right">
                     <span class="text-accent fw-bold text-uppercase tracking-wide">Our Philosophy</span>
                     <h2 class="display-5 fw-bold mt-2 mb-4">Education that Transcends the Classroom</h2>
                     <p class="fs-5 text-muted mb-4">We believe that learning is an active process. Our students don't just absorb information; they interact with it, question it, and apply it to real-world scenarios.</p>
                     
                     <div class="mt-5">
-                        <div class="d-flex mb-4 position-relative">
+                        <div class="d-flex flex-column align-items-center align-items-lg-start mb-4 position-relative">
                             <div class="position-relative z-index-1">
                                 <h4 class="fw-bold h5">Curiosity-Driven</h4>
                                 <p class="text-muted small">We spark questions before providing answers, ensuring students remain engaged and motivated.</p>
                             </div>
                         </div>
-                        <div class="d-flex mb-4 position-relative">
+                        <div class="d-flex flex-column align-items-center align-items-lg-start mb-4 position-relative">
                             <div class="position-relative z-index-1">
                                 <h4 class="fw-bold h5">Mastery-Based</h4>
                                 <p class="text-muted small">Students progress only when they have fully understood a concept, leaving no foundational gaps.</p>
@@ -331,7 +369,7 @@
                         <div class="position-absolute bottom-0 start-0 w-100 p-4 text-white z-index-2">
                             <h4 class="fw-bold mb-1 text-white">Dr. Robert Chen</h4>
                             <p class="text-white mb-3">AP Physics & Calculus</p>
-                            <a href="tutors.html" class="text-white text-decoration-none text-uppercase small tracking-wide fw-bold">View Profile <i data-lucide="arrow-right" style="width: 14px;"></i></a>
+                            <a href="tutors.html" class="tutor-profile-link text-white text-decoration-none text-uppercase small tracking-wide fw-bold">View Profile <i data-lucide="arrow-right" style="width: 14px;"></i></a>
                         </div>
                     </div>
                 </div>
@@ -364,7 +402,7 @@
                                 <div class="position-relative overflow-hidden group w-100 h-100" style="border-radius: var(--bp-radius-lg); min-height: 250px;">
                                     <img src="assets/images/image18.png" alt="Expert Sessions" class="img-fluid w-100 h-100" style="object-fit: cover; transition: transform 0.7s;">
                                     <div class="position-absolute inset-0" style="background-color: rgba(0,0,0,0.5); inset: 0;"></div>
-                                <div class="position-absolute inset-0 p-5 d-flex align-items-center z-index-2 text-white" style="inset: 0;">
+                                <div class="position-absolute inset-0 p-5 d-flex align-items-end z-index-2 text-white" style="inset: 0;">
                                     <div>
                                         <h3 class="fw-bold h2 mb-3 text-white">Join Our Expert Sessions</h3>
                                         <p class="mb-4 text-white">Learn directly from industry veterans and academic scholars.</p>
@@ -407,7 +445,7 @@
                 <div class="col-lg-4">
                     <a class="navbar-brand mb-4" href="index.html" style="color: var(--bp-primary) !important;">
                         <i data-lucide="graduation-cap" class="text-accent"></i>
-                        BrightPath
+                        <span class="fw-bold">BrightPath</span>
                     </a>
                     <p class="mb-4">Empowering students to achieve academic excellence through personalized tutoring and innovative learning methods.</p>
                                         <div class="d-flex gap-3">

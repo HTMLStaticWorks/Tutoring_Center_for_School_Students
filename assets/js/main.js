@@ -16,7 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize Lucide Icons
   if (typeof lucide !== 'undefined') {
     lucide.createIcons();
+    // Apply correct dropdown icon colors for current theme on load
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    updateDropdownIconColors(currentTheme);
   }
+
   
   // Initialize GSAP Animations if available
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
@@ -73,7 +77,28 @@ function updateThemeIcon(theme) {
   if (typeof lucide !== 'undefined') {
     lucide.createIcons();
   }
+
+  // Fix dropdown icon colors after Lucide re-renders
+  updateDropdownIconColors(theme);
 }
+
+/**
+ * Force dropdown chevron icon to correct color for current theme
+ */
+function updateDropdownIconColors(theme) {
+  // Small delay to let Lucide finish rendering SVGs
+  setTimeout(() => {
+    const color = (theme === 'dark') ? '#F8FAFC' : '';
+    document.querySelectorAll('.dropdown-icon svg').forEach(svg => {
+      svg.style.color = color;
+      svg.style.stroke = color;
+      svg.querySelectorAll('polyline, path, line').forEach(el => {
+        el.style.stroke = color;
+      });
+    });
+  }, 50);
+}
+
 
 /**
  * RTL Toggle Logic

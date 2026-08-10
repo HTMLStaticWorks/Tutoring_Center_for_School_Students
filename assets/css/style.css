@@ -423,6 +423,7 @@ a:hover {
   margin-bottom: 1.5rem;
   background: linear-gradient(135deg, var(--bp-dark) 0%, var(--bp-primary) 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   line-height: 1.1;
 }
@@ -430,6 +431,7 @@ a:hover {
 [data-theme="dark"] .hero-title {
   background: linear-gradient(135deg, #FFFFFF 0%, var(--bp-secondary) 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -863,7 +865,7 @@ a:hover {
     position: relative !important;
     inset: auto !important;
     bottom: auto !important;
-    end: auto !important;
+    inset-inline-end: auto !important;
     right: auto !important;
     margin: 1rem auto 0 auto !important;
     max-width: 100% !important;
@@ -871,4 +873,37 @@ a:hover {
     display: block;
     transform: none !important;
   }
+}
+
+/* =============================================
+   Dark Mode: btn-outline-custom contrast fix
+   ============================================= */
+[data-theme="dark"] .btn-outline-custom {
+  border-color: var(--bp-secondary) !important;
+  color: var(--bp-secondary) !important;
+}
+
+[data-theme="dark"] .btn-outline-custom:hover {
+  border-color: var(--bp-primary) !important;
+  color: var(--bp-primary) !important;
+  background: rgba(59, 130, 246, 0.1) !important;
+}
+
+
+/* =============================================
+   Dark Mode: dropdown chevron icon visibility
+   ============================================= */
+[data-theme="dark"] .dropdown-icon {
+  color: var(--bp-text) !important;
+}
+
+[data-theme="dark"] .dropdown-icon svg {
+  color: var(--bp-text) !important;
+  stroke: var(--bp-text) !important;
+}
+
+[data-theme="dark"] .dropdown-icon svg polyline,
+[data-theme="dark"] .dropdown-icon svg path,
+[data-theme="dark"] .dropdown-icon svg line {
+  stroke: var(--bp-text) !important;
 }

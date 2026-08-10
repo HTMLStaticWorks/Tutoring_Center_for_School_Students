@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="light">
 
 <head>
@@ -10,6 +10,7 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
     <title>BrightPath Learning Center | Empowering Student Success</title>
     <meta name="description"
         content="Personalized tutoring, expert teachers, and structured learning programs designed to help every student build confidence and achieve academic excellence.">
@@ -208,12 +209,21 @@
                     <div class="position-relative pe-lg-5">
                         <img src="assets/images/about-preview.webp" alt="About BrightPath"
                             class="img-fluid rounded-4 shadow-lg w-100">
+                        <!-- Rating card overlay: visible on md+ screens only -->
                         <div class="position-absolute bottom-0 end-0 bg-white p-4 rounded-4 shadow-lg m-4 glass-panel d-none d-md-block"
                             style="max-width: 250px;">
                             <div class="d-flex align-items-center gap-3 mb-2">
                                 <i data-lucide="star" class="text-accent fill-accent"></i>
                                 <h5 class="mb-0 fw-bold">4.9/5 Rating</h5>
                             </div>
+                            <p class="mb-0 text-muted small">Based on 1,200+ parent reviews across the state.</p>
+                        </div>
+                    </div>
+                    <!-- Rating card below image: visible on mobile only -->
+                    <div class="bg-white p-4 rounded-4 shadow d-flex align-items-start gap-3 d-md-none mt-3">
+                        <i data-lucide="star" class="text-accent fill-accent flex-shrink-0" style="width:22px;height:22px;"></i>
+                        <div>
+                            <h5 class="mb-1 fw-bold">4.9/5 Rating</h5>
                             <p class="mb-0 text-muted small">Based on 1,200+ parent reviews across the state.</p>
                         </div>
                     </div>
@@ -253,8 +263,8 @@
             <p class="section-subtitle">We offer specialized tutoring programs structured around school curriculums for
                 all age groups.</p>
 
-            <div class="row g-4 justify-content-center mt-4">
-                <div class="col-md-4 stagger-card align-self-md-start">
+            <div class="row g-4 justify-content-center align-items-stretch mt-4">
+                <div class="col-md-6 col-lg-4 stagger-card">
                     <div class="premium-card text-center p-0 d-flex flex-column">
                         <img src="assets/images/Primary.png" alt="Primary" class="w-100" style="height: 220px; object-fit: cover;">
                         <div class="p-4 d-flex flex-column flex-grow-1">
@@ -267,7 +277,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 stagger-card align-self-md-start">
+                <div class="col-md-6 col-lg-4 stagger-card">
                     <div class="premium-card text-center p-0 border-primary shadow-lg d-flex flex-column">
                         <img src="assets/images/Middle School.png" alt="Middle School" class="w-100" style="height: 220px; object-fit: cover;">
                         <div class="p-4 d-flex flex-column flex-grow-1">
@@ -280,7 +290,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 stagger-card align-self-md-center">
+                <div class="col-md-6 col-lg-4 stagger-card">
                     <div class="premium-card text-center p-0 d-flex flex-column">
                         <img src="assets/images/High School.png" alt="High School" class="w-100" style="height: 220px; object-fit: cover;">
                         <div class="p-4 d-flex flex-column flex-grow-1">
@@ -396,9 +406,9 @@
                     <a href="admissions.html" class="btn btn-primary-custom btn-premium mt-3">Start Your Journey</a>
                 </div>
                 <div class="col-lg-7">
-                    <div class="row g-4">
+                    <div class="row g-4 align-items-stretch">
                         <div class="col-md-6" data-aos="fade-up" data-aos-delay="0">
-                            <div class="p-4 rounded-4 text-center text-md-start"
+                            <div class="p-4 rounded-4 text-center text-md-start h-100 d-flex flex-column"
                                 style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
                                 <div class="d-flex justify-content-center justify-content-md-start mb-3">
                                     <div class="icon-box bg-white text-dark"><i data-lucide="users"></i></div>
@@ -409,7 +419,7 @@
                             </div>
                         </div>
                         <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                            <div class="p-4 rounded-4 text-center text-md-start"
+                            <div class="p-4 rounded-4 text-center text-md-start h-100 d-flex flex-column"
                                 style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
                                 <div class="d-flex justify-content-center justify-content-md-start mb-3">
                                     <div class="icon-box bg-white text-dark"><i data-lucide="calendar-check"></i></div>
@@ -420,7 +430,7 @@
                             </div>
                         </div>
                         <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
-                            <div class="p-4 rounded-4 text-center text-md-start"
+                            <div class="p-4 rounded-4 text-center text-md-start h-100 d-flex flex-column"
                                 style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
                                 <div class="d-flex justify-content-center justify-content-md-start mb-3">
                                     <div class="icon-box bg-white text-dark"><i data-lucide="layout-dashboard"></i></div>
@@ -431,7 +441,7 @@
                             </div>
                         </div>
                         <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
-                            <div class="p-4 rounded-4 text-center text-md-start"
+                            <div class="p-4 rounded-4 text-center text-md-start h-100 d-flex flex-column"
                                 style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
                                 <div class="d-flex justify-content-center justify-content-md-start mb-3">
                                     <div class="icon-box bg-white text-dark"><i data-lucide="shield-check"></i></div>
@@ -620,7 +630,7 @@
                 <div class="col-lg-4">
                     <a class="navbar-brand mb-4" href="index.html" style="color: var(--bp-primary) !important;">
                         <i data-lucide="graduation-cap" class="text-accent"></i>
-                        BrightPath
+                        <span class="fw-bold">BrightPath</span>
                     </a>
                     <p class="mb-4">Empowering students to achieve academic excellence through personalized tutoring and innovative learning methods.</p>
                                         <div class="d-flex gap-3">
