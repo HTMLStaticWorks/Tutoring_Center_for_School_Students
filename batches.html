@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
     <script>
@@ -48,6 +48,27 @@
         .form-check-input:checked {
             background-color: var(--bp-primary);
             border-color: var(--bp-primary);
+        }
+
+        /* Dark mode icon contrast fixes */
+        [data-theme="dark"] .batch-card .d-flex.text-muted i[data-lucide],
+        [data-theme="dark"] .batch-card .d-flex.text-muted svg {
+            color: var(--bp-secondary);
+            stroke: var(--bp-secondary);
+        }
+
+        [data-theme="dark"] .filter-sidebar h5 svg,
+        [data-theme="dark"] .filter-sidebar h5 i[data-lucide] {
+            color: var(--bp-secondary);
+            stroke: var(--bp-secondary);
+        }
+
+        /* Fix disabled waitlist button in dark mode */
+        [data-theme="dark"] .btn-light.rounded-pill:disabled,
+        [data-theme="dark"] .btn-light.rounded-pill[disabled] {
+            background-color: var(--bp-border) !important;
+            color: var(--bp-muted) !important;
+            border-color: var(--bp-border) !important;
         }
     </style>
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">

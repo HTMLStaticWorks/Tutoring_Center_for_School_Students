@@ -644,6 +644,27 @@ a:hover {
   outline: none;
 }
 
+/* Bright dropdown arrow — light mode (primary blue) */
+select.form-control-premium,
+.form-select.form-control-premium {
+  padding-right: 2.75rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%231E3A8A' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M2 5l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.85rem center;
+  background-size: 14px 14px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Bright dropdown arrow — dark mode (secondary blue) */
+[data-theme="dark"] select.form-control-premium,
+[data-theme="dark"] .form-select.form-control-premium {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%2360A5FA' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M2 5l6 6 6-6'/%3E%3C/svg%3E");
+  background-color: var(--bp-background);
+}
+
+
 /* Dashboard */
 .sidebar {
   background: var(--bp-card-bg);
