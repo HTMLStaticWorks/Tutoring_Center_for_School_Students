@@ -71,6 +71,22 @@
                 border-bottom: 1px solid var(--bp-border);
                 margin-bottom: 0;
             }
+            /* Prevent greeting text from overflowing and pushing the avatar off screen */
+            .dashboard-top-header .header-greeting {
+                min-width: 0;
+                overflow: hidden;
+            }
+            .dashboard-top-header .header-greeting h3 {
+                font-size: 1rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .dashboard-top-header .header-greeting p {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
         }
 
         @media (max-width: 575.98px) {
@@ -94,8 +110,8 @@
             .dashboard-top-header {
                 position: fixed;
                 top: 0;
-                left: 280px;
-                right: 0;
+                inset-inline-start: 280px; /* logical: left in LTR, right in RTL */
+                inset-inline-end: 0;       /* logical: right in LTR, left in RTL */
                 z-index: 1030;
                 background: var(--bp-card-bg);
                 padding: 0.85rem 1.5rem;
@@ -120,6 +136,7 @@
                 transform: translateX(0);
             }
             .main-content {
+                margin-inline-start: 0;
                 padding: 1rem;
                 padding-top: 7rem;
             }
@@ -249,8 +266,8 @@
             <div class="dashboard-top-header d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom border-secondary border-opacity-10">
                 <div class="d-flex align-items-center gap-3">
                     <button class="btn btn-light d-lg-none" id="openSidebar"><i data-lucide="menu"></i></button>
-                    <div>
-                        <h3 class="fw-bold mb-0">Good morning, Alex! <span class="d-none d-md-inline">👋</span></h3>
+                    <div class="header-greeting">
+                        <h3 class="fw-bold mb-0">Good morning, Alex! <span>👋</span></h3>
                         <p class="text-muted mb-0 small">Grade 10 • Science Stream</p>
                     </div>
                 </div>
@@ -277,7 +294,7 @@
                 <div id="section-overview" class="dashboard-section">
                     <!-- Stats Row -->
             <div class="row g-4 mb-4">
-                <div class="col-lg-3 col-12">
+                <div class="col-lg-3 col-md-6 col-12">
                     <div class="dashboard-card">
                         <div class="d-flex justify-content-between align-items-start mb-3">
                             <div>
@@ -291,7 +308,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-12">
+                <div class="col-lg-3 col-md-6 col-12">
                     <div class="dashboard-card">
                         <div class="d-flex justify-content-between align-items-start mb-3">
                             <div>
@@ -305,7 +322,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-12">
+                <div class="col-lg-3 col-md-6 col-12">
                     <div class="dashboard-card">
                         <div class="d-flex justify-content-between align-items-start mb-3">
                             <div>
@@ -317,7 +334,7 @@
                         <a href="#" class="text-accent text-decoration-none small fw-medium">View all pending <i data-lucide="arrow-right" style="width: 14px;"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-12">
+                <div class="col-lg-3 col-md-6 col-12">
                     <div class="dashboard-card">
                         <div class="d-flex justify-content-between align-items-start mb-3">
                             <div>

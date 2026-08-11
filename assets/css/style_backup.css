@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
   /* Colors - Light Theme */
@@ -637,64 +637,33 @@ a:hover {
   transition: var(--bp-transition);
 }
 
-/* FIX: use background-color (not the background shorthand) so the
-   custom select arrow image is never wiped when the field is focused */
 .form-control-premium:focus {
-  background-color: var(--bp-card-bg);
+  background: var(--bp-card-bg);
   border-color: var(--bp-primary);
   box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
   outline: none;
 }
 
-/* Dropdown arrow — light mode (primary blue)
-   Using the background shorthand locks ALL background sub-properties in
-   one declaration, preventing cascade from accidentally resetting any of
-   them (e.g. background-image getting wiped by a later focus rule). */
+/* Bright dropdown arrow ΓÇö light mode (primary blue) */
 select.form-control-premium,
 .form-select.form-control-premium {
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%231E3A8A' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M2 5l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 0.85rem center / 14px 14px var(--bp-background);
   padding-right: 2.75rem;
-  padding-left: 1rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%231E3A8A' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M2 5l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.85rem center;
+  background-size: 14px 14px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
 }
 
-/* On focus/open, only change background-color — safe because the base
-   select rule already locked background-image and background-position */
-select.form-control-premium:focus,
-.form-select.form-control-premium:focus {
-  background-color: var(--bp-card-bg);
-}
-
-/* Dropdown arrow — dark mode (secondary blue) */
+/* Bright dropdown arrow ΓÇö dark mode (secondary blue) */
 [data-theme="dark"] select.form-control-premium,
 [data-theme="dark"] .form-select.form-control-premium {
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%2360A5FA' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M2 5l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 0.85rem center / 14px 14px var(--bp-background);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%2360A5FA' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M2 5l6 6 6-6'/%3E%3C/svg%3E");
+  background-color: var(--bp-background);
 }
 
-[data-theme="dark"] select.form-control-premium:focus,
-[data-theme="dark"] .form-select.form-control-premium:focus {
-  background-color: var(--bp-card-bg);
-}
-
-/* RTL: text inputs align right */
-[dir="rtl"] .form-control-premium {
-  text-align: right;
-}
-
-/* RTL: flip the custom arrow to the left side */
-[dir="rtl"] select.form-control-premium,
-[dir="rtl"] .form-select.form-control-premium {
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%231E3A8A' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M2 5l6 6 6-6'/%3E%3C/svg%3E") no-repeat left 0.85rem center / 14px 14px var(--bp-background);
-  padding-right: 1rem;
-  padding-left: 2.75rem;
-}
-
-[data-theme="dark"] [dir="rtl"] select.form-control-premium,
-[dir="rtl"] [data-theme="dark"] select.form-control-premium {
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%2360A5FA' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M2 5l6 6 6-6'/%3E%3C/svg%3E") no-repeat left 0.85rem center / 14px 14px var(--bp-background);
-}
 
 /* Dashboard */
 .sidebar {
